@@ -1,0 +1,159 @@
+.access-card {
+  background: #111111;
+  color: #fff;
+  border-radius: 18px;
+  padding: 22px 24px;
+  max-width: 340px;
+  aspect-ratio: 1.586;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid #222;
+  transition: transform 0.3s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  font-family: 'Monserrat', sans-serif;
+  user-select: none;
+}
+
+.access-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.012) 2px,
+    rgba(255,255,255,0.012) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+  
+.access-card.verified-state {
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.06);
+}
+
+.access-card.cooldown-state {
+  cursor: default;
+}
+
+.led {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.led.lit {
+  background: #fff;
+  border-color: #fff;
+  box-shadow: 0 0 6px rgba(255,255,255,0.9), 0 0 12px rgba(255,255,255,0.4);
+}
+
+.led.lit.pulsing {
+  animation: led-pulse 0.9s ease-in-out infinite;
+}
+
+.led.lit.fading {
+  animation: led-fade-out 1.2s ease forwards;
+}
+
+@keyframes led-pulse {
+  0%, 100% { opacity: 1;    box-shadow: 0 0 8px rgba(255,255,255,1),   0 0 16px rgba(255,255,255,0.5); }
+  50%       { opacity: 0.35; box-shadow: 0 0 2px rgba(255,255,255,0.4), 0 0 4px  rgba(255,255,255,0.15); }
+}
+
+@keyframes led-fade-out {
+  0%   { opacity: 1; }
+  100% { opacity: 0.15; }
+}
+
+.scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: rgba(255,255,255,0.06);
+  top: -100px;
+  pointer-events: none;
+  z-index: 2;
+  animation: scan 1.1s linear infinite;
+}
+
+@keyframes scan {
+  0%   { top: -100px; opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.glitch-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  overflow: hidden;
+  animation: idle-pulse 3s ease-in-out infinite;
+  transition: opacity 0.4s ease;
+}
+
+.glitch-grid.scanning  { animation: glitch-run 0.06s steps(1) infinite; }
+.glitch-grid.verified  { animation: none; opacity: 0.9; }
+.glitch-grid.fading-out { animation: grid-fade 1.2s ease forwards; }
+
+@keyframes idle-pulse {
+  0%, 100% { opacity: 0.85; }
+  50%       { opacity: 0.55; }
+}
+
+@keyframes glitch-run {
+  0%   { opacity: 0.85; filter: none; }
+  20%  { opacity: 1;    filter: brightness(1.4) saturate(0); }
+  40%  { opacity: 0.6;  filter: none; }
+  60%  { opacity: 1;    filter: invert(0.08); }
+  80%  { opacity: 0.9;  filter: none; }
+  100% { opacity: 0.85; filter: none; }
+}
+
+@keyframes grid-fade {
+  0%   { opacity: 0.9; }
+  100% { opacity: 0.85; }
+}
+
+.ac-label {
+  font-family: 'Monserrat', sans-serif !important;
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin: 0;
+}
+
+.card-title {
+  font-size: 16px;
+  font-family: 'Monserrat', sans-serif !important;
+  font-weight: 700;
+  margin: 4px 0 0;
+  letter-spacing: 0.03em !important;
+}
+
+.member-name {
+  font-family: 'Monserrat', sans-serif !important;
+  font-size: 13px;
+  margin: 0;
+  letter-spacing: 0.06em;
+}
+
+.cell {
+  transition: background 0.35s ease;
+}
