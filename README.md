@@ -8,7 +8,7 @@ A premium, modern, and dynamically animated personal biography web application b
 
 ## Live Demo
 
-🚀 **Experience the live preview**: <https://portfolio-site.yo-kinto-x.workers.dev/>
+**Experience the live preview**: <https://portfolio-site.yo-kinto-x.workers.dev/>
 
 ## Key Features
 
