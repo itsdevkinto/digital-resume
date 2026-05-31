@@ -39,6 +39,7 @@ const TechStack = () => {
             <div
               className="
                 transition duration-300 ease-out hover:-translate-y-1
+                hover:shadow-lg
                 p-4 sm:p-5 group
                 rounded-2xl border 
                 border-black/25 dark:border-white/5"
