@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import Reveal from "../../Reveal";
-import { useDark } from "../../../context/dark-context";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const recommendations = [
@@ -31,7 +30,6 @@ const recommendations = [
 ];
 
 const RecommendationsCarousel = () => {
-  const { dark } = useDark();
   const isMobile = useIsMobile();
   const [active, setActive] = useState(0);
   const sigRef = useRef<HTMLDivElement | null>(null);
@@ -88,7 +86,7 @@ const RecommendationsCarousel = () => {
     <Reveal
       delay={isMobile ? 100 : 100}
       as="section"
-      className={`p-4 py-8 sm:py-10 flex flex-col border-t dark:border dark:rounded-lg border-black dark:border-white/5 ${dark ? "bg-[#111111]" : ""}`}
+      className="p-4 py-8 sm:py-10 flex flex-col border-t dark:border dark:rounded-lg border-black dark:border-white/5 dark:bg-dark-surface"
     >
       <style>{`
         @keyframes sig-draw {

@@ -5,6 +5,7 @@ type DarkContextType = {
   setDark: Dispatch<SetStateAction<boolean>>;
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const DarkContext = createContext<DarkContextType | null>(null);
 
 export const DarkProvider = ({ children }: { children: React.ReactNode }) => {
@@ -29,7 +30,7 @@ export const DarkProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     document.documentElement.classList.toggle('dark', dark);
     document.documentElement.classList.toggle('light', !dark);
-    try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) { /* ignore */ }
+    try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch { /* ignore */ }
   }, [dark]);
 
   return (
@@ -39,6 +40,7 @@ export const DarkProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useDark = () => {
   const context = useContext(DarkContext);
   if (!context) {

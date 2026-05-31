@@ -2,7 +2,6 @@
 import Section from "../Section";
 import Reveal from "../Reveal";
 import { ChevronRight, ArrowUpRight } from "lucide-react";
-import { useDark } from "@/context/dark-context";
 
 const ProjectsSection = () => {
   const projects = [
@@ -20,7 +19,6 @@ const ProjectsSection = () => {
     { name: "Tracker", desc: "Workout & habit tracker", url: "tracker.app" },
   ];
 
-  const { dark } = useDark();
   return (
     <Section
       title="Recent Projects"
@@ -38,7 +36,7 @@ const ProjectsSection = () => {
           <Reveal key={p.name} delay={(i + 1) * 100}>
             <a
               href="#"
-              className={`${!dark ? "bg-background" : ""} block transition duration-300 ease-out hover:-translate-y-1 hover:shadow-lg group rounded-2xl border border-black/25 dark:border-white/5 p-4 sm:p-5`}
+              className="block transition duration-300 ease-out hover:-translate-y-1 hover:shadow-lg group rounded-2xl border border-black/25 dark:border-white/5 p-4 sm:p-5"
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">

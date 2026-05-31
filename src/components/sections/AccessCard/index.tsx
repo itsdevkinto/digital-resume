@@ -24,8 +24,7 @@ const AccessCard = () => {
   const scramble = () => setCells(randomCells());
 
   const startIdleGlitch = () => {
-    idleTimerRef.current = setTimeout(
-      () => {
+    idleTimerRef.current = setTimeout(() => {
         let i = 0;
         const bursts = 3 + Math.floor(Math.random() * 4);
         burstRef.current = setInterval(() => {
@@ -37,6 +36,7 @@ const AccessCard = () => {
           }
         }, 55);
       },
+      // eslint-disable-next-line react-hooks/purity
       1800 + Math.random() * 2500,
     );
   };

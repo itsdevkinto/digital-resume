@@ -28,7 +28,7 @@ const ExperienceSection = () => {
             className="pl-5 sm:pl-6 pb-5 mr-4 sm:pb-6 last:pb-0 relative group"
           >
             <span
-              className={`absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-sm group-hover:bg-foreground ${
+              className={`absolute -left-1.25 top-1.5 h-2.5 w-2.5 rounded-sm group-hover:bg-foreground ${
                 e.current
                   ? "bg-foreground"
                   : "bg-background border border-black/25 dark:border-white/5"

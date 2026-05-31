@@ -1,6 +1,5 @@
 
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
   "name": "portfolio-site",
   "compatibility_date": "2026-05-20",
   "compatibility_flags": [ "nodejs_compat" ],
@@ -9,7 +8,7 @@
     "not_found_handling": "single-page-application"
   },
   "build": {
-    "command": "npm run build"
+    "command": "pnpm build"
   },
   "observability": {
     "enabled": false,

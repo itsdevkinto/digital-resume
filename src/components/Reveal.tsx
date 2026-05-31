@@ -42,7 +42,8 @@ export const Reveal = ({
     if (typeof window === "undefined") return;
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mq.matches) {
-      setReduced(true);
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+    setReduced(true);
       setVisible(true);
       return;
     }

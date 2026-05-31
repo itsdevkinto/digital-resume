@@ -1,6 +1,5 @@
 import { Mail, Calendar, BookOpen } from "lucide-react";
 import Reveal from "../Reveal";
-import { useDark } from "@/context/dark-context";
 
 const contactLinks = [
   {
@@ -24,13 +23,12 @@ const contactLinks = [
 ];
 
 const GetInTouch = () => {
-  const { dark } = useDark();
 
   return (
     <Reveal
       delay={100}
       as="section"
-      className={`${dark ? "bg-dark-surface" : ""} p-4 py-8 sm:py-10 border-t dark:border dark:rounded-t-lg border-black dark:border-white/5 mt-4`}
+      className="p-4 py-8 sm:py-10 border-t dark:border dark:rounded-t-lg border-black dark:border-white/5 mt-4"
     >
       <div className="flex items-center justify-between mb-5 sm:mb-6">
         <h2
