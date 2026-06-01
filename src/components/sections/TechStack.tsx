@@ -112,14 +112,14 @@ const TechStack = () => {
         </button>
       }
     >
-      <div className="gap-4 space-y-2 sm:space-y-0 sm:grid grid-cols-1">
+      <div className="gap-3 sm:gap-4 grid grid-rows-3">
         {(Object.keys(techStackDetails) as Category[]).map((cat, i) => {
           const skills = techStackDetails[cat].skills;
           return (
             <Reveal delay={(i + 1) * 100} key={cat}>
               <div
                 onClick={() => setActiveCategory(cat)}
-                className="transition duration-300 ease-out hover:-translate-y-1 hover:shadow-lg cursor-pointer p-4 sm:p-5 rounded-2xl border border-black/25 dark:border-white/5 bg-background"
+                className="transition duration-300 ease-out min-h-25 hover:-translate-y-1 hover:shadow-lg cursor-pointer p-4 sm:p-5 rounded-2xl border border-black/25 dark:border-white/5 bg-background"
               >
                 <h3 className="text-xs font-semibold sm:text-sm mb-2 sm:mb-3 tracking-wide">
                   {cat}
