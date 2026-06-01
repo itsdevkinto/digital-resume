@@ -1,9 +1,12 @@
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import type { IconType } from "react-icons/lib";
+import { motion, AnimatePresence } from "framer-motion";
 import { AmbientBackground } from "@/components/ambient-background";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Moon, Sun } from "lucide-react";
 import { TbTrophy, TbWriting, TbMicrophone2 } from "react-icons/tb";
+import { useDark } from "@/context/dark-context";
+import { cn } from "@/lib/utils";
 
 interface Entry {
   title: string;
@@ -124,82 +127,148 @@ const sections: Section[] = [
 ];
 
 const Achievements = () => {
+  const { dark, setDark } = useDark();
+  const location = useLocation();
+
+  const [activeSection, setActiveSection] = useState(() => {
+    const hash = location.hash.slice(1);
+    if (hash && sections.some((s) => s.key === hash)) return hash;
+    return sections[0].key;
+  });
+
   useEffect(() => {
     document.title = "Achievements — Andrei Lopez";
-    window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [activeSection]);
+
+  // Sync hash with active section
+  useEffect(() => {
+    history.replaceState(null, "", `#${activeSection}`);
+  }, [activeSection]);
+
+  // Sync activeSection when URL hash changes (browser back/forward)
+  useEffect(() => {
+    const hash = location.hash.slice(1);
+    if (hash && sections.some((s) => s.key === hash)) {
+      setActiveSection(hash);
+    }
+  }, [location.hash]);
 
   return (
     <main className="min-h-screen text-foreground relative">
       <AmbientBackground />
 
-      <div className="relative z-10 mx-auto w-full max-w-2xl px-5 md:px-6 pt-8 pb-24">
-        {/* Back nav */}
-        <Link
-          to="/"
-          className="inline-flex items-center sm:gap-1.5 text-sm hover:text-foreground transition-colors mb-10"
-        >
-          <ChevronLeft className="w-4 h-4" />
-          Andrei Lopez
-        </Link>
+      <div className="relative z-10 mx-auto w-full max-w-5xl px-5 md:px-10 pt-8 pb-24">
+        {/* Back nav + theme toggle */}
+        <div className="flex items-center justify-between mb-6 md:mb-10">
+          <Link
+            to="/"
+            className="inline-flex items-center sm:gap-1.5 text-sm hover:text-foreground transition-colors"
+          >
+            <ChevronLeft className="w-4 h-4" />
+            Home
+          </Link>
+          <button
+            onClick={() => setDark((d) => !d)}
+            className="h-8 w-8 inline-flex items-center justify-center rounded-full border border-black/25 dark:border-white/5 hover:bg-accent transition-colors shrink-0"
+            aria-label="Toggle theme"
+          >
+            {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
+        </div>
 
-        {/* Article header */}
-        <header className="mb-12">
-          <p className="text-xl font-semibold tracking-widest uppercase mb-3">
-            Profile
-          </p>
-          {/* Byline rule */}
-          <div className="mt-6 pt-6 border-t border-black/10 dark:border-white/8 flex items-center gap-3 text-sm">
+        {/* Section navigation pills + byline */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-10">
+          <div className="flex items-center gap-2 flex-wrap">
+            {sections.map((section) => {
+              const Icon = section.icon;
+              const isActive = activeSection === section.key;
+              return (
+                <button
+                  key={section.key}
+                  onClick={() => setActiveSection(section.key)}
+                  className={cn(
+                    "inline-flex items-center gap-2 h-9 px-4 rounded-full text-xs font-medium transition-all border",
+                    isActive
+                      ? "border-foreground/40 text-foreground"
+                      : "border-black/20 dark:border-white/10 cursor-pointer hover:text-foreground hover:border-foreground/20",
+                  )}
+                >
+                  <Icon className="w-3.5 h-3.5 shrink-0" />
+                  {section.label}
+                </button>
+              );
+            })}
+          </div>
+          <div className="flex items-center gap-3 text-xs shrink-0">
             <span>Andrei Lopez</span>
             <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
             <span>Updated 2026</span>
           </div>
-        </header>
-
-        {/* Sections */}
-        <div className="flex flex-col gap-16">
-          {sections.map((section) => {
-            const Icon = section.icon;
-            return (
-              <section key={section.key} id={section.key}>
-                {/* Section heading */}
-                <div className="flex items-center gap-2.5 mb-8">
-                  <Icon className="w-4 h-4 shrink-0" />
-                  <h2 className="text-[11px] font-semibold tracking-widest uppercase">
-                    {section.label}
-                  </h2>
-                </div>
-
-                {/* Entries */}
-                <div className="flex flex-col gap-10">
-                  {section.items.map((item, i) => (
-                    <article key={item.title}>
-                      <div className="flex items-baseline justify-between gap-4 mb-3">
-                        <h3 className="font-medium text-[15px] leading-snug">
-                          {item.title}
-                        </h3>
-                        <span className="text-[11px] font-mono shrink-0">
-                          {item.date}
-                        </span>
-                      </div>
-                      <p className="text-sm leading-relaxed mb-4">
-                        {item.description}
-                      </p>
-                      <div className="flex flex-col gap-4 text-sm leading-[1.75]">
-                        {item.body.map((paragraph, j) => (
-                          <p key={j}>{paragraph}</p>
-                        ))}
-                      </div>
-                      {i < section.items.length - 1 && (
-                        <hr className="mt-10 border-black/8 dark:border-white/6" />
-                      )}
-                    </article>
-                  ))}
-                </div>
-              </section>
-            );
-          })}
         </div>
+
+        {/* Active section */}
+        <AnimatePresence mode="wait">
+          {sections
+            .filter((s) => s.key === activeSection)
+            .map((section) => {
+              const Icon = section.icon;
+              return (
+                <motion.div
+                  key={section.key}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <section id={section.key}>
+                    {/* Section heading */}
+                    <div className="mb-8 border-b border-black/15 dark:border-white/10 pb-5">
+                      <div className="flex items-center gap-4">
+                        <Icon className="w-7 h-7 shrink-0 text-foreground/80" />
+                        <h2
+                          className="text-3xl md:text-4xl font-bold tracking-tight leading-tight"
+                          style={{ fontFamily: "var(--font-anthropic-serif)" }}
+                        >
+                          {section.label}
+                        </h2>
+                      </div>
+                    </div>
+
+                    {/* Entries */}
+                    <div className="flex flex-col gap-12 dark:border dark:border-white/5 dark:rounded-lg px-5 py-8 dark:bg-dark-surface">
+                      {section.items.map((item, i) => (
+                        <article key={item.title}>
+                          <div className="flex items-baseline justify-between gap-4 mb-4">
+                            <h3 className="font-semibold text-xl md:text-2xl leading-snug">
+                              {item.title}
+                            </h3>
+                            <span className="text-xs md:text-sm font-mono shrink-0">
+                              {item.date}
+                            </span>
+                          </div>
+                          <p className="text-base font-light md:text-lg leading-relaxed mb-5">
+                            {item.description}
+                          </p>
+                          <div className="flex flex-col gap-5 font-light text-base md:text-lg leading-[1.75]">
+                            {item.body.map((paragraph, j) => (
+                              <p key={j}>{paragraph}</p>
+                            ))}
+                          </div>
+                          {i < section.items.length - 1 && (
+                            <hr className="mt-12 border-black/8 dark:border-white/6" />
+                          )}
+                        </article>
+                      ))}
+                    </div>
+                  </section>
+                </motion.div>
+              );
+            })}
+        </AnimatePresence>
       </div>
     </main>
   );
