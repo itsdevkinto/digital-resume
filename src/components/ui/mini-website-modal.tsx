@@ -302,7 +302,7 @@ export const MiniWebsiteModal = ({
                   style={{ willChange: "transform", touchAction: "none" }}
                 >
                   {/* Drag handle */}
-                  <div className="shrink-0 flex justify-center pt-3 pb-1 cursor-grab active:cursor-grabbing">
+                  <div className="shrink-0 flex justify-center pt-3 mb-2 cursor-grab active:cursor-grabbing">
                     <div className="w-10 h-1 rounded-full bg-muted-foreground/30" />
                   </div>
 
@@ -331,7 +331,7 @@ export const MiniWebsiteModal = ({
                 transition={desktopTransition}
                 className={cn(
                   "pointer-events-auto relative bg-background border border-black/25 dark:border-white/5",
-                  "rounded-2xl shadow-lg w-full max-w-3xl h-[580px] flex flex-row overflow-hidden",
+                  "rounded-2xl shadow-lg w-full max-w-5xl h-[800px] flex flex-row overflow-hidden",
                 )}
               >
                 <ModalInner
@@ -385,7 +385,7 @@ const ModalInner = ({
   <>
     <button
       onClick={onDismiss}
-      className="absolute top-2.5 md:top-4 right-5 md:right-4 z-10 w-7 h-7 flex items-center justify-center rounded-lg border border-black/25 dark:border-white/5 text-muted-foreground hover:text-foreground transition-colors"
+      className="absolute top-4.5 md:top-4 right-5 md:right-4 z-10 w-7 h-7 flex items-center justify-center rounded-lg hover:text-foreground transition-colors"
     >
       <X className="w-3.5 h-3.5" />
     </button>
@@ -451,7 +451,7 @@ const ModalInner = ({
               )}
             >
               <Icon className="w-4 h-4 shrink-0" />
-              <span className="truncate leading-none">{cat}</span>
+              <span className=" leading-none">{cat}</span>
               {isActive && (
                 <span className="ml-auto w-1.5 h-1.5 rounded-full bg-foreground/50 shrink-0" />
               )}
