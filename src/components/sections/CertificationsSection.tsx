@@ -157,7 +157,7 @@ const Certifications = () => {
                     delay: idx * 0.04,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="bg-background hover:bg-secondary-foreground/20 transition duration-300 ease-in-out border border-black/25 dark:border-white/5 rounded-xl px-4 py-4 sm:px-5 sm:py-4 flex flex-col gap-2"
+                  className="bg-background hover:bg-secondary-foreground/20 border border-black/25 dark:border-white/5 rounded-xl px-4 py-4 sm:px-5 sm:py-4 flex flex-col gap-2"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <h4 className="font-medium text-foreground text-sm sm:text-base leading-tight">
