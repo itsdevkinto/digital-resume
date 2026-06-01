@@ -114,7 +114,7 @@ const TechStack = () => {
     >
       <div className="gap-4 space-y-2 sm:space-y-0 sm:grid grid-cols-1 md:grid-cols-3">
         {(Object.keys(techStackDetails) as Category[]).map((cat, i) => {
-          const items = techStackDetails[cat].skills.map((s) => s.name);
+          const skills = techStackDetails[cat].skills;
           return (
             <Reveal delay={(i + 1) * 100} key={cat}>
               <div
@@ -125,14 +125,18 @@ const TechStack = () => {
                   {cat}
                 </h3>
                 <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                  {items.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-full border shadow-md text-foreground px-2.5 sm:px-3 py-0.5 sm:py-1 text-xs"
-                    >
-                      {t}
-                    </span>
-                  ))}
+                  {skills.map((s) => {
+                    const Icon = s.Icon;
+                    return (
+                      <span
+                        key={s.name}
+                        className="inline-flex items-center gap-1 rounded-full border shadow-md text-foreground px-2.5 sm:px-3 py-0.5 sm:py-1 text-xs"
+                      >
+                        <Icon className={`w-3 h-3 ${s.color} shrink-0`} />
+                        {s.name}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
             </Reveal>
