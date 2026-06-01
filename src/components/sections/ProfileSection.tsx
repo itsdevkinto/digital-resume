@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom";
 import {
   BadgeCheck,
   MapPin,
@@ -65,8 +66,8 @@ const ProfileSection = () => {
         </p>
 
         {/* Achievement badge */}
-        <a
-          href="#"
+        <Link
+          to="/achievements"
           className="mt-2 md:mt-3 inline-flex items-center gap-1.5 rounded-lg bg-[#2a6df4] text-white px-3 py-1.5 text-[10px] md:text-xs font-medium shadow-sm hover:opacity-90 transition w-fit max-w-full"
         >
           <Trophy className="h-3 w-3 md:h-3.5 md:w-3.5 shrink-0" />
@@ -77,7 +78,7 @@ const ProfileSection = () => {
             </span>
           </span>
           <ChevronRight className="h-3 w-3 shrink-0" />
-        </a>
+        </Link>
 
         {/* CTA buttons */}
         <div className="flex flex-wrap gap-2 mt-2 md:mt-3">
