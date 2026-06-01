@@ -149,13 +149,17 @@ const Achievements = () => {
     history.replaceState(null, "", `#${activeSection}`);
   }, [activeSection]);
 
-  // Sync activeSection when URL hash changes (browser back/forward)
+  // Sync activeSection on browser back/forward
   useEffect(() => {
-    const hash = location.hash.slice(1);
-    if (hash && sections.some((s) => s.key === hash)) {
-      setActiveSection(hash);
-    }
-  }, [location.hash]);
+    const onPopState = () => {
+      const hash = window.location.hash.slice(1);
+      if (hash && sections.some((s) => s.key === hash)) {
+        setActiveSection(hash);
+      }
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
 
   return (
     <main className="min-h-screen text-foreground relative">
