@@ -183,8 +183,7 @@
   }
 
   * {
-    @apply border-border transition-colors duration-300;
-    transition-timing-function: ease-in-out;
+    @apply border-border;
   }
 
   body {
