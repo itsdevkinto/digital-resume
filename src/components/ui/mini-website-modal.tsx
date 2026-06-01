@@ -462,11 +462,8 @@ const ModalInner = ({
     )}
 
     <div className="flex-1 overflow-y-auto px-5 md:px-8 md:py-6 relative bg-background dark:bg-dark-surface">
-      {/* key here forces a real DOM remount so the CSS animation re-fires on category switch */}
-      <div
-        key={displayCategory}
-        style={{ animation: "sheet-fade-in 0.14s ease both" }}
-      >
+      {/* key here forces a real DOM remount so Framer re-fires entrance animation on category switch */}
+      <div key={displayCategory}>
         <div className="mb-4">
           <h2 className="text-2xl hidden md:block font-semibold mb-1.5">
             {displayCategory}
