@@ -269,13 +269,13 @@ export const MiniWebsiteModal = ({
           <div
             ref={backdropRef}
             onClick={handleOverlayClick}
-            className="fixed inset-0 z-[9998] bg-black/40 pointer-events-auto"
+            className="fixed inset-0 z-9998 bg-black/40 pointer-events-auto"
             style={{ animation: "sheet-fade-in 0.2s ease forwards" }}
           />
 
           <div
             className={cn(
-              "fixed inset-0 z-[9999] flex pointer-events-none",
+              "fixed inset-0 z-9999 flex pointer-events-none",
               isMobile
                 ? "items-end justify-center"
                 : "items-center justify-center md:p-16",
@@ -331,7 +331,7 @@ export const MiniWebsiteModal = ({
                 transition={desktopTransition}
                 className={cn(
                   "pointer-events-auto relative bg-background border border-black/25 dark:border-white/5",
-                  "rounded-2xl shadow-lg w-full max-w-5xl h-[800px] flex flex-row overflow-hidden",
+                  "rounded-2xl shadow-lg w-full max-w-5xl h-200 flex flex-row overflow-hidden",
                 )}
               >
                 <ModalInner
@@ -462,8 +462,11 @@ const ModalInner = ({
     )}
 
     <div className="flex-1 overflow-y-auto px-5 md:px-8 md:py-6 relative bg-background dark:bg-dark-surface">
-      {/* key here forces a real DOM remount so Framer re-fires entrance animation on category switch */}
-      <div key={displayCategory}>
+      {/* key here forces a real DOM remount so the CSS animation re-fires on category switch */}
+      <div
+        key={displayCategory}
+        style={{ animation: "sheet-fade-in 0.14s ease both" }}
+      >
         <div className="mb-4">
           <h2 className="text-2xl hidden md:block font-semibold mb-1.5">
             {displayCategory}
