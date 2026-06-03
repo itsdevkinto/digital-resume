@@ -21,7 +21,7 @@ const projects: Project[] = [
     year: "2024",
     liveUrl: "#",
     ghUrl: "#",
-    gradient: "from-blue-500/15 to-cyan-500/10",
+    gradient: "from-blue-100/60 to-cyan-100/30",
   },
   {
     name: "OffGrid SOS",
@@ -30,7 +30,7 @@ const projects: Project[] = [
     year: "2024",
     liveUrl: "#",
     ghUrl: "#",
-    gradient: "from-orange-500/15 to-red-500/10",
+    gradient: "from-orange-100/60 to-red-100/30",
   },
   {
     name: "AIChat",
@@ -39,7 +39,7 @@ const projects: Project[] = [
     year: "2023",
     liveUrl: "#",
     ghUrl: "#",
-    gradient: "from-purple-500/15 to-violet-500/10",
+    gradient: "from-purple-100/60 to-violet-100/30",
   },
   {
     name: "Tracker",
@@ -48,7 +48,7 @@ const projects: Project[] = [
     year: "2023",
     liveUrl: "#",
     ghUrl: "#",
-    gradient: "from-emerald-500/15 to-green-500/10",
+    gradient: "from-emerald-100/60 to-green-100/30",
   },
 ];
 
@@ -87,8 +87,13 @@ const Projects = () => {
             Projects
           </h1>
           <p className="text-sm text-foreground/65 mt-2">
-            Recent work and side projects
+            Side projects I've shipped — plus a few experiments along the way
           </p>
+          <div className="flex items-center gap-3 text-xs text-foreground/50 mt-3">
+            <span>Andrei Lopez</span>
+            <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+            <span>{projects.length} projects</span>
+          </div>
         </div>
 
         <div className="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2">
