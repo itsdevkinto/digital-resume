@@ -61,8 +61,6 @@ export const MiniWebsiteModal = ({
   const isMobile = useIsMobile();
   const categoryKeys = Object.keys(categories);
 
-  if (typeof document === "undefined") return null;
-
   const [displayCategory, setDisplayCategory] = useState(activeCategory);
   if (open && activeCategory !== displayCategory) {
     setDisplayCategory(activeCategory);
@@ -263,7 +261,8 @@ export const MiniWebsiteModal = ({
     ease: [0.25, 1, 0.35, 1] as const,
   };
 
-  return createPortal(
+  return typeof document !== "undefined"
+    ? createPortal(
     <AnimatePresence>
       {open && (
         <>
@@ -355,7 +354,8 @@ export const MiniWebsiteModal = ({
       )}
     </AnimatePresence>,
     document.body,
-  );
+  )
+    : null;
 };
 
 // ─── Inner layout ─────────────────────────────────────────────────────────────
