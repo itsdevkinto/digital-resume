@@ -1,59 +1,43 @@
 # PLANS — Future work
 
-## Projects page at `/projects`
+## Status: skeletons built, needs real data
 
-### Page layout
-- Full-page route (like Achievements) with `AmbientBackground`, back nav `<Link to="/">` + theme toggle in the top bar
-- Serif page heading "Projects" with a subtitle like "Recent work and side projects"
-- 2-column grid below (stacks to 1 col on mobile)
+All page layouts, card grids, dark mode styling, and navigation are implemented. Remaining work is filling in real content.
 
-### Card design (YouTube-style)
-```
-┌───────────────────────┐
-│                       │
-│  [screenshot/thumb]   │  ← whole card clickable → liveUrl
-│                       │
-├───────────────────────┤
-│  Project Name    2026 │  ← card click → liveUrl
-│  ───────────────────── │
-│  Truncated desc...    │  ← line-clamp-3
-│                       │
-│  [GitHub icon]  ───── │  ← stops propagation, opens ghUrl
-└───────────────────────┘
-```
+---
 
-### Data model
-```ts
-interface Project {
-  name: string
-  description: string
-  year: string
-  liveUrl: string
-  ghUrl?: string
-  img?: string            // path to screenshot, optional
-}
-```
-Data embedded as `const projects: Project[]` in the page file.
+## Achievements (`/achievements`) — needs data
 
-### Card behavior
-- Card click → `window.open(liveUrl, "_blank")`
-- GitHub icon → `e.stopPropagation()` + opens ghUrl
-- Description: `line-clamp-3`
-- Screenshot: gradient placeholder if no image
+- [x] 2-column card grid with branded org icons and colors
+- [x] Pill navigation with section filtering
+- [x] Dark mode card styling
+- **Needs**: real org names, real org icons, real descriptions per entry
 
-### Route
-Add `<Route path="/projects" element={<Projects />} />` in `App.tsx` above the catch-all.
+## Projects (`/projects`) — needs data
 
-### Homepage link
-Change `href="#"` → `<Link to="/projects">` in `ProjectsSection.tsx`. Optionally add a badge in `ProfileSection.tsx`.
+- [x] Full-page route with back nav + theme toggle
+- [x] Serif heading with byline and GitHub profile link
+- [x] 2-column card grid with gradient placeholders
+- [x] Card click → liveUrl, GitHub link with stopPropagation
+- [x] Dark mode consistency
+- **Needs**: real live URLs, real GitHub URLs, real screenshots (replace gradient placeholders), real project descriptions
 
-### Design references
-- Follow Achievements card style: `dark:bg-white/4` container with `dark:bg-dark-surface` inner cards, left-aligned org icons with brand colors, entry numbers, hover lift
-- Add `orgIcon?: IconType; orgColor?: string` to `Project` interface for project org/brand visual anchors (like Achievements)
-- Use the same `hover:-translate-y-0.5 hover:shadow-lg` card interaction pattern
+## Certifications — needs data
 
-### Out of scope (first pass)
-- No modal, no detail page, no sub-routes
-- No categorization/tabs/pill nav
-- No tech tags on cards (easy to add later)
-- No real screenshots yet — placeholder gradients
+- [ ] Add `issuerIcon` + `issuerColor` fields to certification entries (follow Achievements org icon pattern)
+- [ ] Update certification cards to show issuer icons with brand colors
+- [ ] Input real cert data (issuer, date, credential URL, etc.)
+
+## Testimonials / Recommendations — needs data
+
+- [ ] Add real testimonial entries with real names, titles, and quotes
+- [ ] Optionally add avatar images or org icons per testimonial
+- [ ] Review carousel behavior on mobile
+
+## Backlog
+
+- Replace gradient placeholders with real project screenshots
+- Add tech stack tags to project cards
+- Add `orgIcon` + `orgColor` to Projects interface for project-level brand icons
+- Add a Projects badge to ProfileSection on homepage
+- Review all placeholder/mock data site-wide before production launch
