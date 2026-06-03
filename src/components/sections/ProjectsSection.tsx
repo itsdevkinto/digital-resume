@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom";
 import Section from "../Section";
 import Reveal from "../Reveal";
 import { ChevronRight, ArrowUpRight } from "lucide-react";
@@ -23,12 +24,12 @@ const ProjectsSection = () => {
     <Section
       title="Recent Projects"
       action={
-        <a
-          href="#"
+        <Link
+          to="/projects"
           className="text-sm font-medium text-foreground/65 hover:text-foreground inline-flex items-center gap-1"
         >
           View All <ChevronRight className="h-4 w-4" />
-        </a>
+        </Link>
       }
     >
       <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2">
