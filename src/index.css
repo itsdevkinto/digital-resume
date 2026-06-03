@@ -149,7 +149,7 @@
   .dark {
     --lamp-color: oklch(1 0 0 / 0.12);
     --lamp-color-strong: oklch(1 0 0 / 0.22);
-    --background: 0 0% 7%;
+    --background: 0 0% 5%;
     --foreground: 210 40% 98%;
     --surface: 0 0% 7%;
     --surface-foreground: 210 40% 98%;
