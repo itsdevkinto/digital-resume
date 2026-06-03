@@ -1,87 +1,98 @@
 # Digital Resume
 
-[![Build](https://img.shields.io/badge/build-passing-brightgreen)]()
-[![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-19-58c4dc)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-19-58c4dc?logo=react&logoColor=white)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38bdf8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-deployed-f38020?logo=cloudflare&logoColor=white)](https://workers.cloudflare.com/)
 [![License](https://img.shields.io/badge/license-MIT-blue)]()
 
-A glassmorphic single-page resume for **Andrei Lopez** — full-stack engineer, community builder, and embedded systems tinkerer. Built with React 19, TypeScript 6, Vite 8, and Tailwind CSS 4. Deployed on Cloudflare Workers.
+A glassmorphic personal portfolio and resume for **Andrei Lopez** — a full-stack software engineer specializing in modern web applications, developer tooling, and embedded systems.
 
-**[→ Live Demo](https://portfolio-site.yo-kinto-x.workers.dev/)**
+**[View live demo →](https://portfolio-site.yo-kinto-x.workers.dev/)**
 
 ---
 
-## Pages
+## Overview
 
-| Route | Content |
-|---|---|
-| `/` | Homepage — profile, about, experience, tech stack, projects, certifications, recommendations, contact |
-| `/achievements` | Card-grid Awards, Publications, Speaking with pill navigation, branded org icons, and fade transitions |
-| `*` | 404 |
+This is a single-page application built with React 19 and TypeScript 6, styled with Tailwind CSS 4 and shadcn/ui primitives. The site is prerendered at build time for SEO and social crawler compatibility, then served as a static asset from Cloudflare Workers with SPA fallback routing.
 
 ## Features
 
-- **Glassmorphic design** — translucent surfaces, ambient gradient lamps, subtle blur
-- **Dark mode** — context-driven toggle on every page, persisted to `localStorage`, respects `prefers-color-scheme`, neutral gray-black palette with layered background hierarchy
-- **Scroll-reveal animations** — IntersectionObserver-based blur + translate entrance on section scroll
-- **Tabbed Achievements** — section pill navigation with Framer Motion fade transitions, URL hash sync, browser back/forward support
-- **Tech stack badges** — brand-color icons on every skill pill (React, TypeScript, Docker, etc.)
-- **Fully responsive** — mobile-first layout, adaptive grid, fluid typography
-- **SPA routing** — React Router v7 with Cloudflare Workers SPA fallback
-- **Type-safe** — strict TypeScript with `verbatimModuleSyntax`, `erasableSyntaxOnly`, no unused locals
+- **Glassmorphic design** — translucent UI surfaces with ambient gradient lighting and subtle backdrop blur effects
+- **Dark mode** — theme toggle persisted to `localStorage`, respects system `prefers-color-scheme`
+- **Scroll-reveal animations** — IntersectionObserver-driven blur and translate transitions as sections enter the viewport
+- **Tabbed achievements** — pill navigation with Framer Motion fade transitions, URL hash synchronization, and browser history support
+- **Social preview cards** — Open Graph and Twitter Card meta tags with a dedicated preview image for rich link sharing on Messenger, Discord, LinkedIn, and Twitter
+- **Responsive layout** — mobile-first design with adaptive grids and fluid typography across all breakpoints
+- **Type safety** — strict TypeScript configuration with `verbatimModuleSyntax`, `erasableSyntaxOnly`, and comprehensive unused-variable checking
 
 ## Tech Stack
 
-- **Framework**: React 19, TypeScript 6, Vite 8
-- **Styling**: Tailwind CSS 4, CSS variables, `@theme inline` tokens
-- **UI**: shadcn/ui, Radix UI primitives (Dialog, Toggle, Toast, Sheet, Separator)
-- **Icons**: Lucide React, `react-icons` (Tabler, Simple Icons)
-- **Animation**: Framer Motion 12, custom IntersectionObserver `Reveal` component
-- **Routing**: React Router v7 (BrowserRouter)
-- **Fonts**: Geist Variable (body), DM Serif Display (headings), DM Sans
-- **Deployment**: Cloudflare Workers (`wrangler.jsonc`), SPA fallback
-
-## Commands
-
-| Command | Action |
+| Category | Technologies |
 |---|---|
-| `pnpm dev` | Dev server at `localhost:5173` with HMR |
-| `pnpm build` | `tsc -b && vite build` — typecheck then bundle |
-| `pnpm lint` | `eslint .` |
-| `pnpm preview` | `vite preview` — serve built `dist/` locally |
-| `npx wrangler deploy` | Deploy `dist/` to Cloudflare Workers |
+| **Framework** | React 19, TypeScript 6, Vite 8 |
+| **Styling** | Tailwind CSS 4, CSS custom properties, `@theme inline` tokens |
+| **UI Components** | shadcn/ui, Radix UI primitives (Dialog, Toggle, Toast, Sheet, Separator) |
+| **Animation** | Framer Motion 12, custom IntersectionObserver Reveal component |
+| **Routing** | React Router v7 (BrowserRouter) |
+| **Fonts** | Geist Variable (body), DM Serif Display (headings), DM Sans |
+| **Icons** | Lucide React, react-icons (Tabler, Simple Icons) |
+| **Deployment** | Cloudflare Workers (static assets), SSR prerendering via react-dom/server |
 
 ## Project Structure
 
 ```
 src/
-├── main.tsx                        # ReactDOM entry
-├── App.tsx                         # BrowserRouter + DarkProvider + routes
-├── index.css                       # Tailwind v4 + theme tokens + keyframes
+├── main.tsx                         # Application entry point
+├── App.tsx                          # Router, theme provider, layout
+├── index.css                        # Tailwind entry, theme tokens, keyframes
 ├── pages/
-│   ├── Index.tsx                   # Homepage (assembles all sections)
-│   ├── Achievements.tsx            # Tabbed awards/publications/speaking
-│   └── NotFound.tsx                # 404
+│   ├── Index.tsx                    # Homepage — assembles all sections
+│   ├── Achievements.tsx             # Tabbed awards, publications, speaking
+│   └── NotFound.tsx                 # 404 page
 ├── components/
-│   ├── sections/                   # Page sections (Profile, About, Experience, etc.)
-│   ├── ui/                         # shadcn/ui primitives
-│   ├── ambient-background.tsx      # Gradient lamp layers
-│   ├── Reveal.tsx                  # Scroll-entrance animation
-│   ├── RevealSequence.tsx          # Staggered reveal wrapper
-│   └── Section.tsx                 # Section layout wrapper
+│   ├── sections/                    # Page sections (Profile, About, Experience, etc.)
+│   ├── ui/                          # shadcn/ui primitives
+│   ├── ambient-background.tsx       # Animated gradient lamp layers
+│   ├── Reveal.tsx                   # Scroll-entrance animation component
+│   ├── RevealSequence.tsx           # Staggered reveal wrapper
+│   └── Section.tsx                  # Section layout wrapper
 ├── context/
-│   └── dark-context.tsx            # Dark mode context + provider
+│   └── dark-context.tsx             # Dark mode context and provider
 ├── hooks/
-│   ├── use-dark.ts                 # Dark mode hook (re-export)
-│   └── use-mobile.tsx              # Mobile breakpoint hook
+│   ├── use-dark.ts                  # Dark mode accessor hook
+│   └── use-mobile.tsx               # Responsive breakpoint detection
 └── lib/
-    └── utils.ts                    # cn() helper (clsx + tailwind-merge)
+    └── utils.ts                     # cn() utility (clsx + tailwind-merge)
+scripts/
+└── prerender.mjs                    # Static prerendering script
+```
+
+## Getting Started
+
+```bash
+# Install dependencies
+pnpm install
+
+# Start development server with HMR
+pnpm dev
+
+# Typecheck and build for production
+pnpm build
+
+# Preview production build locally
+pnpm preview
+
+# Deploy to Cloudflare Workers
+npx wrangler deploy
 ```
 
 ## Deployment
 
-The site is served as static assets from **Cloudflare Workers** (not Pages). SPA routing is handled via `not_found_handling: "single-page-application"` in `wrangler.jsonc`.
+The site is deployed as a **Cloudflare Workers** static assets application (not Cloudflare Pages). The `wrangler.jsonc` configuration handles SPA routing via `not_found_handling: "single-page-application"`, ensuring client-side routes work correctly on page reload. The build step runs `tsc -b` for type checking, followed by `vite build` for bundling, and finally a prerender script that generates static HTML for each route.
 
-```bash
-npx wrangler deploy
-```
+---
+
+<p align="center">
+  <sub>Built with React 19 · TypeScript 6 · Tailwind CSS 4 · Cloudflare Workers</sub>
+</p>
