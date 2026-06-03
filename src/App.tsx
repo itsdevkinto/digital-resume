@@ -7,6 +7,7 @@ import Achievements from "./pages/Achievements.tsx";
 import Projects from "./pages/Projects.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
+
 import { DarkProvider } from "./context/dark-context.tsx";
 
 const Layout = () => {
@@ -25,13 +26,13 @@ const Layout = () => {
   }, [location.pathname]);
 
   return (
-    <>
+    <div className="relative min-h-screen">
       <AmbientBackground />
       <div style={{ display: location.pathname === "/" ? undefined : "none" }}>
         <Index />
       </div>
       {location.pathname !== "/" && <Outlet />}
-    </>
+    </div>
   );
 };
 
