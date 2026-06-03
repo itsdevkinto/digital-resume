@@ -23,9 +23,7 @@ const AboutSection = () => {
             developer tools.
           </p>
           <p>
-            I've built apps for growing teams ship fast, streamline their
-            workflows, and grow technical communities around the products I work
-            on.
+  c
           </p>
           <p>
             Lately I've been exploring AI tooling and integrating LLM-powered
