@@ -24,7 +24,7 @@ const ProfileSection = () => {
       <img
         src={profile}
         alt="Portrait"
-        className="w-28 md:w-40 md:h-40 object-cover rounded-2xl shrink-0 self-stretch md:self-auto"
+        className="w-28 max-h-38 md:max-h-none md:w-40 md:h-40 object-cover rounded-2xl shrink-0 self-stretch md:self-auto"
       />
 
       {/* All info beside avatar at every breakpoint */}
