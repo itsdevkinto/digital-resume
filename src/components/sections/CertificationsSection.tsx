@@ -82,7 +82,7 @@ const Certifications = () => {
   const [activeCategory, setActiveCategory] = useState<Category | null>(null);
 
   const flatCerts = Object.entries(certificationsDetails).flatMap(
-    ([category, { items }]) => items.map(({ description, ...item }) => ({
+    ([category, { items }]) => items.map(({ ...item }) => ({
       ...item,
       category: category as Category,
     })),
