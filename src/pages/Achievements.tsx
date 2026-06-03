@@ -29,7 +29,7 @@ const sections: Section[] = [
   {
     key: "awards",
     label: "Awards & Honors",
-    icon: Si1Panel,
+    icon: TbTrophy,
     items: [
       {
         title: "Developer of the Year",
