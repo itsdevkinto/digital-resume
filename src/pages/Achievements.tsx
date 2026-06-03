@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import type { IconType } from "react-icons/lib";
 import { motion, AnimatePresence } from "framer-motion";
-import { AmbientBackground } from "@/components/ambient-background";
 import { ChevronLeft, Moon, Sun } from "lucide-react";
-import { TbTrophy, TbWriting, TbMicrophone2 } from "react-icons/tb";
+import { TbAward, TbTrophy, TbWriting, TbMicrophone2 } from "react-icons/tb";
+import { SiDevpost, SiGithub, Si1Panel, SiHashnode, SiMeetup, SiTechcrunch } from "react-icons/si";
+import { FaMedium } from "react-icons/fa";
 import { useDark } from "@/context/dark-context";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +14,8 @@ interface Entry {
   date: string;
   description: string;
   body: string[];
+  orgIcon?: IconType;
+  orgColor?: string;
 }
 
 interface Section {
@@ -26,11 +29,13 @@ const sections: Section[] = [
   {
     key: "awards",
     label: "Awards & Honors",
-    icon: TbTrophy,
+    icon: Si1Panel,
     items: [
       {
         title: "Developer of the Year",
         date: "2023",
+        orgIcon: Si1Panel,
+        orgColor: "text-blue-400",
         description:
           "Awarded for leading the migration to a microservices architecture, improving system uptime to 99.99%.",
         body: [
@@ -42,6 +47,8 @@ const sections: Section[] = [
       {
         title: "Global Hackathon Winner",
         date: "2022",
+        orgIcon: SiDevpost,
+        orgColor: "text-blue-400",
         description:
           "1st place out of 500+ teams for building an AI-powered code review assistant.",
         body: [
@@ -54,6 +61,8 @@ const sections: Section[] = [
       {
         title: "Open Source Contributor",
         date: "2021",
+        orgIcon: SiGithub,
+        orgColor: "text-foreground",
         description:
           "Recognized by GitHub in the Arctic Code Vault program for contributions to major frameworks.",
         body: [
@@ -72,6 +81,8 @@ const sections: Section[] = [
       {
         title: "Scaling React Server Components",
         date: "Oct 2023",
+        orgIcon: FaMedium,
+        orgColor: "text-foreground",
         description:
           "A deep dive into optimizing RSC payloads, featured in Frontend Masters blog with 50k+ reads.",
         body: [
@@ -84,6 +95,8 @@ const sections: Section[] = [
       {
         title: "Zero-Downtime Database Migrations",
         date: "Mar 2022",
+        orgIcon: SiHashnode,
+        orgColor: "text-blue-500",
         description:
           "Published a comprehensive guide on executing schema changes safely in PostgreSQL.",
         body: [
@@ -102,6 +115,8 @@ const sections: Section[] = [
       {
         title: "ReactNext Speaker",
         date: "Jun 2023",
+        orgIcon: SiTechcrunch,
+        orgColor: "text-green-400",
         description:
           "Delivered a 30-minute talk on 'The Future of State Management' to an audience of 800+ developers.",
         body: [
@@ -114,6 +129,8 @@ const sections: Section[] = [
       {
         title: "Local Meetup Organizer",
         date: "2021–Present",
+        orgIcon: SiMeetup,
+        orgColor: "text-red-400",
         description:
           "Host and organize monthly tech meetups for the local JavaScript community.",
         body: [
@@ -135,10 +152,6 @@ const Achievements = () => {
     if (hash && sections.some((s) => s.key === hash)) return hash;
     return sections[0].key;
   });
-
-  useEffect(() => {
-    document.title = "Achievements — Andrei Lopez";
-  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -163,14 +176,12 @@ const Achievements = () => {
 
   return (
     <main className="min-h-screen text-foreground relative">
-      <AmbientBackground />
-
       <div className="relative z-10 mx-auto w-full max-w-5xl px-5 md:px-10 pt-8 pb-24">
         {/* Back nav + theme toggle */}
         <div className="flex items-center justify-between mb-6 md:mb-10">
           <Link
             to="/"
-            className="inline-flex items-center sm:gap-1.5 text-sm hover:text-foreground transition-colors"
+            className="inline-flex items-center sm:gap-1.5 text-sm hover:text-foreground text-foreground/65 transition-colors"
           >
             <ChevronLeft className="w-4 h-4" />
             Home
@@ -197,8 +208,8 @@ const Achievements = () => {
                   className={cn(
                     "inline-flex items-center gap-2 h-9 px-4 rounded-full text-xs font-medium transition-all border",
                     isActive
-                      ? "border-foreground/40 text-foreground"
-                      : "border-black/20 dark:border-white/10 cursor-pointer hover:text-foreground hover:border-foreground/20",
+                      ? "border-foreground/40 bg-foreground text-background"
+                      : "border-black/20 dark:border-white/20 cursor-pointer hover:text-foreground hover:bg-foreground/10",
                   )}
                 >
                   <Icon className="w-3.5 h-3.5 shrink-0" />
@@ -219,7 +230,6 @@ const Achievements = () => {
           {sections
             .filter((s) => s.key === activeSection)
             .map((section) => {
-              const Icon = section.icon;
               return (
                 <motion.div
                   key={section.key}
@@ -229,42 +239,34 @@ const Achievements = () => {
                   transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <section id={section.key}>
-                    {/* Section heading */}
-                    <div className="mb-8 border-b border-black/15 dark:border-white/10 pb-5">
-                      <div className="flex items-center gap-4">
-                        <Icon className="w-7 h-7 shrink-0 text-foreground/80" />
-                        <h2
-                          className="text-3xl md:text-4xl font-bold tracking-tight leading-tight"
-                          style={{ fontFamily: "var(--font-anthropic-serif)" }}
-                        >
-                          {section.label}
-                        </h2>
-                      </div>
-                    </div>
 
                     {/* Entries */}
-                    <div className="flex flex-col gap-12 dark:border dark:border-white/5 dark:rounded-lg px-5 py-8 dark:bg-dark-surface">
-                      {section.items.map((item, i) => (
-                        <article key={item.title}>
-                          <div className="flex items-baseline justify-between gap-4 mb-4">
-                            <h3 className="font-semibold text-xl md:text-2xl leading-snug">
-                              {item.title}
-                            </h3>
-                            <span className="text-xs md:text-sm font-mono shrink-0">
-                              {item.date}
-                            </span>
-                          </div>
-                          <p className="text-base font-light md:text-lg leading-relaxed mb-5">
-                            {item.description}
-                          </p>
-                          <div className="flex flex-col gap-5 font-light text-base md:text-lg leading-[1.75]">
-                            {item.body.map((paragraph, j) => (
-                              <p key={j}>{paragraph}</p>
-                            ))}
-                          </div>
-                          {i < section.items.length - 1 && (
-                            <hr className="mt-12 border-black/8 dark:border-white/6" />
+                    <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2">
+                      {section.items.map((item) => (
+                        <article
+                          key={item.title}
+                          className="bg-background dark:bg-white/4 border border-black/25 dark:border-white/5 rounded-2xl p-4 sm:p-5 transition duration-300 ease-out hover:-translate-y-0.5 hover:shadow-lg group"
+                        >
+                          {item.orgIcon && (
+                            <div className="mb-3">
+                              <item.orgIcon className={cn("w-6 h-6", item.orgColor ?? "text-foreground/30")} />
+                            </div>
                           )}
+                          <div className="flex items-start justify-between gap-3">
+                            <div className="min-w-0">
+                              <div className="flex items-center gap-2 mb-1">
+                                <h3 className="font-bold text-sm sm:text-base">
+                                  {item.title}
+                                </h3>
+                              </div>
+                              <p className="text-xs sm:text-sm text-foreground/80 mt-1 leading-snug">
+                                {item.description}
+                              </p>
+                            </div>
+                          </div>
+                          <code className="mt-3 sm:mt-4 inline-block text-xs bg-secondary px-2 py-1 rounded font-mono text-foreground/75">
+                            {item.date}
+                          </code>
                         </article>
                       ))}
                     </div>
