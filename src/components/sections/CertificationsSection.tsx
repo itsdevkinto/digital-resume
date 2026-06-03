@@ -145,11 +145,11 @@ const Certifications = () => {
                 <h3 className="font-bold text-xs sm:text-sm leading-snug text-foreground">
                   {c.name}
                 </h3>
-                <p className="text-xs font-medium text-foreground/75 mt-1 flex items-center gap-1.5">
+                <p className="text-xs font-medium text-foreground/75 mt-2 flex items-center gap-1 max-w-[180px] min-w-[120px]">
                   {c.orgIcon && (
-                    <c.orgIcon className={`w-4 h-4 ${c.orgColor ?? "text-foreground/30"}`} />
+                    <c.orgIcon className={`size-4 shrink-0 ${c.orgColor ?? "text-foreground/30"}`} />
                   )}
-                  {c.issuer}
+                  <span className="truncate">{c.issuer}</span>
                 </p>
               </button>
             </Reveal>
@@ -181,17 +181,15 @@ const Certifications = () => {
                   }}
                   className="bg-background hover:bg-secondary-foreground/20 border border-black/25 dark:border-white/5 rounded-xl px-4 py-4 sm:px-5 sm:py-4 flex flex-col gap-2"
                 >
-                  <div className="flex items-start justify-between gap-4">
                     <h4 className="font-medium text-foreground text-sm sm:text-base leading-tight">
                       {item.name}
                     </h4>
-                    <span className="text-[10px] sm:text-xs font-mono text-muted-foreground px-2 py-0.5 rounded-md bg-secondary shrink-0 flex items-center gap-1">
+                    <span className="text-[10px] sm:text-xs font-mono text-muted-foreground px-2 py-0.5 rounded-md bg-secondary shrink-0 flex items-center gap-1 max-w-[130px] min-w-[90px]">
                       {item.orgIcon && (
-                        <item.orgIcon className={`w-3.5 h-3.5 ${item.orgColor ?? "text-foreground/30"}`} />
+                        <item.orgIcon className={`w-3.5 h-3.5 shrink-0 ${item.orgColor ?? "text-foreground/30"}`} />
                       )}
-                      {item.issuer}
+                      <span className="truncate">{item.issuer}</span>
                     </span>
-                  </div>
                   <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mt-1">
                     {item.description}
                   </p>
