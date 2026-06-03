@@ -17,7 +17,14 @@ interface CertDetailItem {
   orgColor?: string;
 }
 
-const certificationsDetails: Record<string, { icon: React.ComponentType<{ className?: string }>; description: string; items: CertDetailItem[] }> = {
+const certificationsDetails: Record<
+  string,
+  {
+    icon: React.ComponentType<{ className?: string }>;
+    description: string;
+    items: CertDetailItem[];
+  }
+> = {
   Cloud: {
     icon: TbCloud,
     description: "Cloud infrastructure and platform certifications.",
@@ -71,10 +78,22 @@ const certificationsDetails: Record<string, { icon: React.ComponentType<{ classN
 
 type Category = keyof typeof certificationsDetails;
 
-const categoryConfig: Record<Category, { icon: React.ComponentType<{ className?: string }>; description: string }> = {
-  Cloud: { icon: TbCloud, description: "Cloud infrastructure and platform certifications." },
-  Engineering: { icon: TbCode, description: "Core software engineering and technical certifications." },
-  AI: { icon: TbServer, description: "Artificial intelligence and machine learning certifications." },
+const categoryConfig: Record<
+  Category,
+  { icon: React.ComponentType<{ className?: string }>; description: string }
+> = {
+  Cloud: {
+    icon: TbCloud,
+    description: "Cloud infrastructure and platform certifications.",
+  },
+  Engineering: {
+    icon: TbCode,
+    description: "Core software engineering and technical certifications.",
+  },
+  AI: {
+    icon: TbServer,
+    description: "Artificial intelligence and machine learning certifications.",
+  },
 };
 
 const Certifications = () => {
@@ -87,11 +106,31 @@ const Certifications = () => {
     "Generative AI Professional": "AI",
   };
 
-  const certifications: { name: string; issuer: string; orgIcon?: IconType; orgColor?: string }[] = [
-    { name: "AWS Solutions Architect", issuer: "Amazon", orgIcon: FaAws, orgColor: "text-[#FF9900]" },
+  const certifications: {
+    name: string;
+    issuer: string;
+    orgIcon?: IconType;
+    orgColor?: string;
+  }[] = [
+    {
+      name: "AWS Solutions Architect",
+      issuer: "Amazon",
+      orgIcon: FaAws,
+      orgColor: "text-[#FF9900]",
+    },
     { name: "Google Cloud Professional", issuer: "Google", orgIcon: FcGoogle },
-    { name: "Software Engineering", issuer: "TestDome", orgIcon: FaCertificate, orgColor: "text-emerald-500" },
-    { name: "Generative AI Professional", issuer: "Oracle", orgIcon: GrOracle, orgColor: "text-[#F80000]" },
+    {
+      name: "Software Engineering",
+      issuer: "TestDome",
+      orgIcon: FaCertificate,
+      orgColor: "text-emerald-500",
+    },
+    {
+      name: "Generative AI Professional",
+      issuer: "Oracle",
+      orgIcon: GrOracle,
+      orgColor: "text-[#F80000]",
+    },
   ];
 
   useEffect(() => {
@@ -147,7 +186,9 @@ const Certifications = () => {
                 </h3>
                 <p className="text-xs font-medium text-foreground/75 mt-2 inline-flex items-center gap-1">
                   {c.orgIcon && (
-                    <c.orgIcon className={`size-4 shrink-0 ${c.orgColor ?? "text-foreground/30"}`} />
+                    <c.orgIcon
+                      className={`size-4 shrink-0 ${c.orgColor ?? "text-foreground/30"}`}
+                    />
                   )}
                   {c.issuer}
                 </p>
@@ -168,7 +209,7 @@ const Certifications = () => {
         renderContent={(cat) => {
           const category = cat as Category;
           return (
-            <div className="flex flex-col gap-3 pb-8 md:pb-0">
+            <div className="flex flex-col gap-2">
               {certificationsDetails[category].items.map((item, idx) => (
                 <motion.div
                   key={item.name}
@@ -181,15 +222,18 @@ const Certifications = () => {
                   }}
                   className="bg-background hover:bg-secondary-foreground/20 border border-black/25 dark:border-white/5 rounded-xl px-4 py-4 sm:px-5 sm:py-4 flex flex-col gap-2"
                 >
-                    <h4 className="font-medium text-foreground text-sm sm:text-base leading-tight">
-                      {item.name}
-                    </h4>
-                    <span className="text-[10px] sm:text-xs font-mono text-muted-foreground px-2 py-0.5 rounded-md bg-secondary shrink-0 inline-flex items-center gap-1">
-                      {item.orgIcon && (
-                        <item.orgIcon className={`w-3.5 h-3.5 shrink-0 ${item.orgColor ?? "text-foreground/30"}`} />
-                      )}
-                      {item.issuer}
-                    </span>
+                  <h4 className="font-medium text-foreground text-sm sm:text-base leading-tight">
+                    {item.name}
+                  </h4>
+                  <span className="text-[10px] sm:text-xs font-mono text-muted-foreground px-2 py-0.5 rounded-md bg-secondary shrink-0 inline-flex w-fit items-center gap-1">
+                    {" "}
+                    {item.orgIcon && (
+                      <item.orgIcon
+                        className={`w-3.5 h-3.5 shrink-0 ${item.orgColor ?? "text-foreground/30"}`}
+                      />
+                    )}
+                    {item.issuer}
+                  </span>
                   <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mt-1">
                     {item.description}
                   </p>
