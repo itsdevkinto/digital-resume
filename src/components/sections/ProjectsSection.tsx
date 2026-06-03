@@ -36,7 +36,7 @@ const ProjectsSection = () => {
           <Reveal key={p.name} delay={(i + 1) * 100}>
             <a
               href="#"
-              className="block transition duration-300 ease-out hover:-translate-y-1 hover:shadow-lg group rounded-2xl border border-black/25 dark:border-white/5 p-4 sm:p-5"
+              className="block bg-background dark:bg-dark-surface transition duration-300 ease-out hover:-translate-y-1 hover:shadow-lg group rounded-2xl border border-black/25 dark:border-white/5 p-4 sm:p-5"
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">

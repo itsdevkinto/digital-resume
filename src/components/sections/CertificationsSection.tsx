@@ -94,7 +94,7 @@ const Certifications = () => {
     <Reveal
       delay={100}
       as="section"
-      className="p-4 py-8 sm:py-10 border-t dark:border dark:rounded-lg border-black dark:border-white/5 dark:bg-dark-surface"
+      className="p-4 py-8 sm:py-10 border-t dark:border dark:rounded-lg border-black dark:border-white/5 dark:bg-white/4"
     >
       <div className="flex items-center justify-between mb-5 sm:mb-6">
         <h2
@@ -117,7 +117,7 @@ const Certifications = () => {
             <Reveal
               key={c.name}
               delay={(i + 1) * 80}
-              className="rounded-md border border-black/25 dark:border-white/5 bg-background hover:bg-secondary-foreground/20 transition duration-300 ease-in-out p-3 sm:p-4"
+              className="rounded-md border border-black/25 dark:border-white/5 bg-background dark:bg-dark-surface hover:bg-secondary-foreground/20 transition duration-300 ease-in-out p-3 sm:p-4"
             >
               <button
                 onClick={() => setActiveCategory(category)}

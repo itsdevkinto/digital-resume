@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Reveal from "../../Reveal";
 import { useIsMobile } from "@/hooks/use-mobile";
+import "./styles.css";
 
 const recommendations = [
   {
@@ -86,78 +87,8 @@ const RecommendationsCarousel = () => {
     <Reveal
       delay={isMobile ? 100 : 100}
       as="section"
-      className="p-4 py-8 sm:py-10 flex flex-col border-t dark:border dark:rounded-lg border-black dark:border-white/5 dark:bg-dark-surface"
+      className="p-4 py-8 sm:py-10 flex flex-col border-t dark:border dark:rounded-lg border-black dark:border-white/5 dark:bg-white/4"
     >
-      <style>{`
-        @keyframes sig-draw {
-          from { stroke-dashoffset: var(--sig-len); opacity: 0; }
-          5%   { opacity: 1; }
-          to   { stroke-dashoffset: 0; opacity: 1; }
-        }
-
-        @keyframes sig-undraw {
-          from { stroke-dashoffset: 0; opacity: 1; }
-          95%  { opacity: 0.1; }
-          to   { stroke-dashoffset: var(--sig-len); opacity: 0; }
-        }
-
-        .sig-path {
-          fill: none;
-          stroke-linecap: round;
-          stroke-linejoin: round;
-        }
-
-        .sig-path-1 {
-          --sig-len: 900;
-          stroke-dasharray: 900;
-          stroke-dashoffset: 900;
-          stroke-width: 4;
-        }
-        .sig-path-2 {
-          --sig-len: 700;
-          stroke-dasharray: 700;
-          stroke-dashoffset: 700;
-          stroke-width: 4;
-        }
-        .sig-path-3 {
-          --sig-len: 50;
-          stroke-dasharray: 50;
-          stroke-dashoffset: 50;
-          stroke-width: 4;
-        }
-        .sig-path-4 {
-          --sig-len: 2;
-          stroke-dasharray: 2;
-          stroke-dashoffset: 2;
-          stroke-width: 4;
-        }
-
-        .is-drawing .sig-path-1 {
-          animation: sig-draw 2.5s cubic-bezier(0.4, 0, 0.2, 1) 0s forwards;
-        }
-        .is-drawing .sig-path-2 {
-          animation: sig-draw 4s cubic-bezier(0.4, 0, 0.2, 1) 0.7s forwards;
-        }
-        .is-drawing .sig-path-3 {
-          animation: sig-draw 0.3s cubic-bezier(0.4, 0, 0.2, 1) 1.9s forwards;
-        }
-        .is-drawing .sig-path-4 {
-          animation: sig-draw 0.5s ease 2.5s forwards;
-        }
-
-        .is-undrawn .sig-path-1,
-        .is-undrawn .sig-path-2,
-        .is-undrawn .sig-path-3,
-        .is-undrawn .sig-path-4 {
-          stroke-dashoffset: var(--sig-len);
-          opacity: 0;
-        }
-
-        .sig-wrapper {
-          transition: opacity 0.2s ease;
-        }
-      `}</style>
-
       <h2
         className="text-xl sm:text-2xl font-bold tracking-tight mb-5 sm:mb-6"
         style={{ fontFamily: "var(--font-anthropic-serif)" }}
@@ -167,7 +98,7 @@ const RecommendationsCarousel = () => {
 
       <div className="flex-1">
         <figure
-          className="rounded-2xl border border-black/25 dark:border-white/5 p-4 sm:p-5 transition-all duration-300"
+          className="rounded-2xl bg-foreground/2 dark:bg-dark-surface border border-black/25 dark:border-white/5 p-4 sm:p-5 transition-all duration-300"
         >
           <blockquote
             key={active}

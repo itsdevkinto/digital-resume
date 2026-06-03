@@ -6,7 +6,7 @@ const Footer = () => {
     <Reveal
       delay={200}
       as="footer"
-      className="glass p-4 py-8 sm:py-10 border-t dark:border dark:border-t-0 dark:rounded-b-lg border-black dark:border-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+      className="glass dark:bg-white/4 p-4 py-8 sm:py-10 border-t dark:border dark:border-t-0 dark:rounded-b-lg border-black dark:border-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
     >
       <p className="text-xs sm:text-sm font-medium text-foreground/70">
         © {new Date().getFullYear()} Andrei Lopez. All rights reserved.

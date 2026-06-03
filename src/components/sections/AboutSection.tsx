@@ -8,7 +8,7 @@ const AboutSection = () => {
       as="section"
       className="mt-8 md:mt-10 sm:mt-12 grid gap-4 md:grid-cols-[1fr_320px]"
     >
-      <div className="dark:bg-dark-surface rounded-lg p-4">
+      <div className="dark:bg-white/4 rounded-lg p-4">
         <h2
           className="text-xl sm:text-2xl font-bold tracking-tight mb-4"
           style={{ fontFamily: "var(--font-anthropic-serif)" }}

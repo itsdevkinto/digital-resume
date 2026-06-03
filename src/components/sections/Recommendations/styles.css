@@ -1,0 +1,69 @@
+.sig-path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sig-path-1 {
+  --sig-len: 900;
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  stroke-width: 4;
+  opacity: 0;
+  transition:
+    stroke-dashoffset 2.5s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+    opacity 0.15s ease 0s;
+}
+
+.sig-path-2 {
+  --sig-len: 700;
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+  stroke-width: 4;
+  opacity: 0;
+  transition:
+    stroke-dashoffset 4s cubic-bezier(0.4, 0, 0.2, 1) 0.7s,
+    opacity 0.15s ease 0.7s;
+}
+
+.sig-path-3 {
+  --sig-len: 50;
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  stroke-width: 4;
+  opacity: 0;
+  transition:
+    stroke-dashoffset 0.3s cubic-bezier(0.4, 0, 0.2, 1) 1.9s,
+    opacity 0.15s ease 1.9s;
+}
+
+.sig-path-4 {
+  --sig-len: 2;
+  stroke-dasharray: 2;
+  stroke-dashoffset: 2;
+  stroke-width: 4;
+  opacity: 0;
+  transition:
+    stroke-dashoffset 0.5s ease 2.5s,
+    opacity 0.15s ease 2.5s;
+}
+
+.is-drawing .sig-path-1,
+.is-drawing .sig-path-2,
+.is-drawing .sig-path-3,
+.is-drawing .sig-path-4 {
+  stroke-dashoffset: 0;
+  opacity: 1;
+}
+
+.is-undrawn .sig-path-1,
+.is-undrawn .sig-path-2,
+.is-undrawn .sig-path-3,
+.is-undrawn .sig-path-4 {
+  stroke-dashoffset: var(--sig-len);
+  opacity: 0;
+}
+
+.sig-wrapper {
+  transition: opacity 0.2s ease;
+}

@@ -28,7 +28,7 @@ const GetInTouch = () => {
     <Reveal
       delay={100}
       as="section"
-      className="p-4 py-8 sm:py-10 border-t dark:border dark:rounded-t-lg border-black dark:border-white/5 mt-4"
+      className="p-4 py-8 dark:bg-white/4 sm:py-10 border-t dark:border dark:rounded-t-lg border-black dark:border-white/5 mt-4"
     >
       <div className="flex items-center justify-between mb-5 sm:mb-6">
         <h2
@@ -44,7 +44,7 @@ const GetInTouch = () => {
             <a
               href={href}
               target="_blank"
-              className="rounded-2xl border border-black/25 dark:border-white/5 p-4 sm:p-5 hover:bg-secondary-foreground/20 transition flex sm:flex-col items-center sm:items-start gap-3 sm:gap-0"
+              className="rounded-2xl border bg-background dark:bg-dark-surface border-black/25 dark:border-white/5 p-4 sm:p-5 hover:bg-secondary-foreground/20 transition flex sm:flex-col items-center sm:items-start gap-3 sm:gap-0"
             >
               <Icon className="h-4 w-4 text-foreground/50 sm:hidden" />
               <div>
