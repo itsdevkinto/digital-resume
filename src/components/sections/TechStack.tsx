@@ -23,8 +23,17 @@ import {
   SiGithubactions,
 } from "react-icons/si";
 import { TbLayoutGrid, TbTerminal2, TbCloud, TbCode } from "react-icons/tb";
+import type { IconType } from "react-icons/lib";
 
-const techStackDetails = {
+const techStackDetails: Record<
+  string,
+  {
+    icon: React.ComponentType<{ className?: string }>;
+    description: string;
+    mobileLabel?: string;
+    skills: { name: string; level: number; Icon: IconType; color: string }[];
+  }
+> = {
   Frontend: {
     icon: TbLayoutGrid,
     description:
@@ -55,6 +64,7 @@ const techStackDetails = {
     icon: TbCloud,
     description:
       "Deploying infrastructure, setting up CI/CD, and scaling apps.",
+    mobileLabel: "DevOps",
     skills: [
       { name: "Cloudflare", level: 85, Icon: SiCloudflare, color: "text-[#F38020]" },
       { name: "GitHub Actions", level: 85, Icon: SiGithubactions, color: "text-[#2088FF]" },
@@ -66,24 +76,15 @@ const techStackDetails = {
 
 type Category = keyof typeof techStackDetails;
 
-const categoryConfig: Record<Category, { icon: React.ComponentType<{ className?: string }>; description: string; mobileLabel?: string }> = {
-  Frontend: {
-    icon: TbLayoutGrid,
-    description: "Building responsive, accessible, and performant user interfaces.",
-  },
-  Backend: {
-    icon: TbTerminal2,
-    description: "Designing scalable APIs, managing databases, and server logic.",
-  },
-  "DevOps & Cloud": {
-    icon: TbCloud,
-    description: "Deploying infrastructure, setting up CI/CD, and scaling apps.",
-    mobileLabel: "DevOps",
-  },
-};
-
 const TechStack = () => {
   const [activeCategory, setActiveCategory] = useState<Category | null>(null);
+
+  const catConfig = Object.fromEntries(
+    Object.entries(techStackDetails).map(([key, { icon, description, mobileLabel }]) => [
+      key,
+      { icon, description, ...(mobileLabel ? { mobileLabel } : {}) },
+    ]),
+  ) as Record<Category, { icon: React.ComponentType<{ className?: string }>; description: string; mobileLabel?: string }>;
 
   useEffect(() => {
     document.body.style.overflow = activeCategory ? "hidden" : "unset";
@@ -147,7 +148,7 @@ const TechStack = () => {
       <MiniWebsiteModal
         open={!!activeCategory}
         activeCategory={activeCategory ?? "Frontend"}
-        categories={categoryConfig}
+        categories={catConfig}
         headerLabel="Tech Stack"
         headerIcon={TbCode}
         onClose={() => setActiveCategory(null)}

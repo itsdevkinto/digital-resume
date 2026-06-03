@@ -78,60 +78,22 @@ const certificationsDetails: Record<
 
 type Category = keyof typeof certificationsDetails;
 
-const categoryConfig: Record<
-  Category,
-  { icon: React.ComponentType<{ className?: string }>; description: string }
-> = {
-  Cloud: {
-    icon: TbCloud,
-    description: "Cloud infrastructure and platform certifications.",
-  },
-  Engineering: {
-    icon: TbCode,
-    description: "Core software engineering and technical certifications.",
-  },
-  AI: {
-    icon: TbServer,
-    description: "Artificial intelligence and machine learning certifications.",
-  },
-};
-
 const Certifications = () => {
   const [activeCategory, setActiveCategory] = useState<Category | null>(null);
 
-  const certificationToCategory: Record<string, Category> = {
-    "AWS Solutions Architect": "Cloud",
-    "Google Cloud Professional": "Cloud",
-    "Software Engineering": "Engineering",
-    "Generative AI Professional": "AI",
-  };
+  const flatCerts = Object.entries(certificationsDetails).flatMap(
+    ([category, { items }]) => items.map(({ description, ...item }) => ({
+      ...item,
+      category: category as Category,
+    })),
+  );
 
-  const certifications: {
-    name: string;
-    issuer: string;
-    orgIcon?: IconType;
-    orgColor?: string;
-  }[] = [
-    {
-      name: "AWS Solutions Architect",
-      issuer: "Amazon",
-      orgIcon: FaAws,
-      orgColor: "text-[#FF9900]",
-    },
-    { name: "Google Cloud Professional", issuer: "Google", orgIcon: FcGoogle },
-    {
-      name: "Software Engineering",
-      issuer: "TestDome",
-      orgIcon: FaCertificate,
-      orgColor: "text-emerald-500",
-    },
-    {
-      name: "Generative AI Professional",
-      issuer: "Oracle",
-      orgIcon: GrOracle,
-      orgColor: "text-[#F80000]",
-    },
-  ];
+  const catConfig = Object.fromEntries(
+    Object.entries(certificationsDetails).map(([key, { icon, description }]) => [
+      key,
+      { icon, description },
+    ]),
+  ) as Record<Category, { icon: React.ComponentType<{ className?: string }>; description: string }>;
 
   useEffect(() => {
     document.body.style.overflow = activeCategory ? "hidden" : "unset";
@@ -169,8 +131,7 @@ const Certifications = () => {
         </button>
       </div>
       <div className="grid gap-2">
-        {certifications.map((c, i) => {
-          const category = certificationToCategory[c.name];
+        {flatCerts.map((c, i) => {
           return (
             <Reveal
               key={c.name}
@@ -178,7 +139,7 @@ const Certifications = () => {
               className="rounded-md border border-black/25 dark:border-white/5 bg-background dark:bg-dark-surface hover:bg-secondary-foreground/20 transition duration-300 ease-in-out p-3 sm:p-4"
             >
               <button
-                onClick={() => setActiveCategory(category)}
+                onClick={() => setActiveCategory(c.category)}
                 className="w-full text-left cursor-pointer"
               >
                 <h3 className="font-bold text-xs sm:text-sm leading-snug text-foreground">
@@ -201,7 +162,7 @@ const Certifications = () => {
       <MiniWebsiteModal
         open={!!activeCategory}
         activeCategory={activeCategory ?? "Cloud"}
-        categories={categoryConfig}
+        categories={catConfig}
         headerLabel="Certifications"
         headerIcon={TbCertificate}
         onClose={() => setActiveCategory(null)}
