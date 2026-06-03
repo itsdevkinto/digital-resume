@@ -4,8 +4,20 @@ import { Reveal } from "../Reveal";
 import { motion } from "framer-motion";
 import { MiniWebsiteModal } from "@/components/ui/mini-website-modal";
 import { TbCloud, TbCode, TbServer, TbCertificate } from "react-icons/tb";
+import type { IconType } from "react-icons/lib";
+import { FaAws } from "react-icons/fa";
+import { SiGoogle } from "react-icons/si";
+import { GrOracle } from "react-icons/gr";
 
-const certificationsDetails = {
+interface CertDetailItem {
+  name: string;
+  issuer: string;
+  description: string;
+  orgIcon?: IconType;
+  orgColor?: string;
+}
+
+const certificationsDetails: Record<string, { icon: React.ComponentType<{ className?: string }>; description: string; items: CertDetailItem[] }> = {
   Cloud: {
     icon: TbCloud,
     description: "Cloud infrastructure and platform certifications.",
@@ -13,12 +25,16 @@ const certificationsDetails = {
       {
         name: "AWS Solutions Architect",
         issuer: "Amazon",
+        orgIcon: FaAws,
+        orgColor: "text-orange-400",
         description:
           "Validated expertise in designing distributed systems on AWS using cost-optimization and best-practice architectural principles.",
       },
       {
         name: "Google Cloud Professional",
         issuer: "Google",
+        orgIcon: SiGoogle,
+        orgColor: "text-blue-400",
         description:
           "Demonstrated proficiency in designing, developing, and managing GCP solutions with scalable cloud architecture.",
       },
@@ -43,6 +59,8 @@ const certificationsDetails = {
       {
         name: "Generative AI Professional",
         issuer: "Oracle",
+        orgIcon: GrOracle,
+        orgColor: "text-red-400",
         description:
           "Specialized certification in generative AI models, prompt engineering, and AI application development using Oracle's AI platform.",
       },
@@ -68,11 +86,11 @@ const Certifications = () => {
     "Generative AI Professional": "AI",
   };
 
-  const certifications = [
-    { name: "AWS Solutions Architect", issuer: "Amazon" },
-    { name: "Google Cloud Professional", issuer: "Google" },
+  const certifications: { name: string; issuer: string; orgIcon?: IconType; orgColor?: string }[] = [
+    { name: "AWS Solutions Architect", issuer: "Amazon", orgIcon: FaAws, orgColor: "text-orange-400" },
+    { name: "Google Cloud Professional", issuer: "Google", orgIcon: SiGoogle, orgColor: "text-blue-400" },
     { name: "Software Engineering", issuer: "TestDome" },
-    { name: "Generative AI Professional", issuer: "Oracle" },
+    { name: "Generative AI Professional", issuer: "Oracle", orgIcon: GrOracle, orgColor: "text-red-400" },
   ];
 
   useEffect(() => {
@@ -121,14 +139,21 @@ const Certifications = () => {
             >
               <button
                 onClick={() => setActiveCategory(category)}
-                className="w-full text-left cursor-pointer"
+                className="w-full text-left cursor-pointer flex items-start gap-3"
               >
-                <h3 className="font-bold text-xs sm:text-sm leading-snug text-foreground">
-                  {c.name}
-                </h3>
-                <p className="text-xs font-medium text-foreground/75 mt-1">
-                  {c.issuer}
-                </p>
+                {c.orgIcon && (
+                  <div className="shrink-0 mt-0.5">
+                    <c.orgIcon className={`w-5 h-5 ${c.orgColor ?? "text-foreground/30"}`} />
+                  </div>
+                )}
+                <div className="min-w-0">
+                  <h3 className="font-bold text-xs sm:text-sm leading-snug text-foreground">
+                    {c.name}
+                  </h3>
+                  <p className="text-xs font-medium text-foreground/75 mt-1">
+                    {c.issuer}
+                  </p>
+                </div>
               </button>
             </Reveal>
           );
@@ -160,9 +185,14 @@ const Certifications = () => {
                   className="bg-background hover:bg-secondary-foreground/20 border border-black/25 dark:border-white/5 rounded-xl px-4 py-4 sm:px-5 sm:py-4 flex flex-col gap-2"
                 >
                   <div className="flex items-start justify-between gap-4">
-                    <h4 className="font-medium text-foreground text-sm sm:text-base leading-tight">
-                      {item.name}
-                    </h4>
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      {item.orgIcon && (
+                        <item.orgIcon className={`w-5 h-5 shrink-0 ${item.orgColor ?? "text-foreground/30"}`} />
+                      )}
+                      <h4 className="font-medium text-foreground text-sm sm:text-base leading-tight">
+                        {item.name}
+                      </h4>
+                    </div>
                     <span className="text-[10px] sm:text-xs font-mono text-muted-foreground px-2 py-0.5 rounded-md bg-secondary shrink-0">
                       {item.issuer}
                     </span>
