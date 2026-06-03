@@ -23,7 +23,7 @@ const AboutSection = () => {
             developer tools.
           </p>
           <p>
-            I've build apps for growing teams ship fast, streamline their
+            I've built apps for growing teams ship fast, streamline their
             workflows, and grow technical communities around the products I work
             on.
           </p>
