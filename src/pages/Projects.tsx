@@ -79,32 +79,32 @@ const Projects = () => {
           </button>
         </div>
 
-        <div className="flex items-start justify-between gap-6 mb-10">
-          <div>
+        <div className="mb-10">
+          <div className="flex items-center justify-between gap-6">
             <h1
               className="text-3xl md:text-4xl font-bold tracking-tight leading-tight"
               style={{ fontFamily: "var(--font-anthropic-serif)" }}
             >
               Projects
             </h1>
-            <p className="text-sm text-foreground/65 mt-2">
-              Side projects I've shipped — plus a few experiments along the way
-            </p>
-            <div className="flex items-center gap-3 text-xs text-foreground/50 mt-3">
-              <span>Andrei Lopez</span>
-              <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
-              <span>{projects.length} projects</span>
-            </div>
+            <a
+              href="https://github.com/itsdevkinto"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 flex items-center gap-2 rounded-xl border border-black/25 dark:border-white/5 bg-background dark:bg-dark-surface px-3.5 py-2.5 text-xs font-medium text-foreground/65 hover:text-foreground hover:-translate-y-0.5 hover:shadow-md transition duration-300 ease-out"
+            >
+              <SiGithub className="w-4 h-4" />
+              <span className="hidden sm:inline">GitHub Profile</span>
+            </a>
           </div>
-          <a
-            href="https://github.com/itsdevkinto"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 self-center flex items-center gap-2 rounded-xl border border-black/25 dark:border-white/5 bg-background dark:bg-dark-surface px-3.5 py-2.5 text-xs font-medium text-foreground/65 hover:text-foreground hover:-translate-y-0.5 hover:shadow-md transition duration-300 ease-out"
-          >
-            <SiGithub className="w-4 h-4" />
-            <span className="hidden sm:inline">GitHub Profile</span>
-          </a>
+          <p className="text-sm text-foreground/65 mt-2">
+            Side projects I've shipped — plus a few experiments along the way
+          </p>
+          <div className="flex items-center gap-3 text-xs text-foreground/50 mt-3">
+            <span>Andrei Lopez</span>
+            <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+            <span>{projects.length} projects</span>
+          </div>
         </div>
 
         <div className="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2">
