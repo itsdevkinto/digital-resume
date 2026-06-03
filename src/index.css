@@ -149,9 +149,9 @@
   .dark {
     --lamp-color: oklch(1 0 0 / 0.12);
     --lamp-color-strong: oklch(1 0 0 / 0.22);
-    --background: 0 0% 4%;
+    --background: 0 0% 7%;
     --foreground: 210 40% 98%;
-    --surface: 0 0% 4%;
+    --surface: 0 0% 7%;
     --surface-foreground: 210 40% 98%;
 
     --card: 222.2 84% 4.9%;
@@ -218,7 +218,7 @@
 }
 
 @utility bg-dark-surface {
-  background-color: #111111;
+  background-color: #1a1a1a;
 }
 
 @layer utilities {
