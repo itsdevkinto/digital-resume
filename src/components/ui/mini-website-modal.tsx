@@ -302,7 +302,7 @@ export const MiniWebsiteModal = ({
                   style={{ willChange: "transform", touchAction: "none" }}
                 >
                   {/* Drag handle */}
-                  <div className="shrink-0 flex justify-center pt-3 mb-2 cursor-grab active:cursor-grabbing">
+                  <div className="shrink-0 dark:bg-white/4 flex justify-center pt-3 pb-2 cursor-grab active:cursor-grabbing">
                     <div className="w-10 h-1 rounded-full bg-muted-foreground/30" />
                   </div>
 
