@@ -61,6 +61,8 @@ export const MiniWebsiteModal = ({
   const isMobile = useIsMobile();
   const categoryKeys = Object.keys(categories);
 
+  if (typeof document === "undefined") return null;
+
   const [displayCategory, setDisplayCategory] = useState(activeCategory);
   if (open && activeCategory !== displayCategory) {
     setDisplayCategory(activeCategory);
