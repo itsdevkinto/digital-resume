@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import type { IconType } from "react-icons/lib";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, Moon, Sun } from "lucide-react";
-import { TbAward, TbTrophy, TbWriting, TbMicrophone2 } from "react-icons/tb";
+import { TbTrophy, TbWriting, TbMicrophone2 } from "react-icons/tb";
 import { SiDevpost, SiGithub, Si1Panel, SiHashnode, SiMeetup, SiTechcrunch } from "react-icons/si";
 import { FaMedium } from "react-icons/fa";
 import { useDark } from "@/context/dark-context";
