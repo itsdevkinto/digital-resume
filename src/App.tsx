@@ -1,19 +1,45 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { BrowserRouter, Outlet, Route, Routes, useLocation } from "react-router-dom";
 
+import { AmbientBackground } from "./components/ambient-background";
 import Index from "./pages/Index.tsx";
 import Achievements from "./pages/Achievements.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 import { DarkProvider } from "./context/dark-context.tsx";
 
+const Layout = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      document.title = "Andrei Lopez — Software Engineer";
+    } else if (location.pathname === "/achievements") {
+      document.title = "Achievements — Andrei Lopez";
+    } else {
+      document.title = "Not Found — Andrei Lopez";
+    }
+  }, [location.pathname]);
+
+  return (
+    <>
+      <AmbientBackground />
+      <div style={{ display: location.pathname === "/" ? undefined : "none" }}>
+        <Index />
+      </div>
+      {location.pathname !== "/" && <Outlet />}
+    </>
+  );
+};
+
 const App = () => (
   <DarkProvider>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/achievements" element={<Achievements />} />
-        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-        <Route path="*" element={<NotFound />} />
+        <Route element={<Layout />}>
+          <Route path="/achievements" element={<Achievements />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </DarkProvider>

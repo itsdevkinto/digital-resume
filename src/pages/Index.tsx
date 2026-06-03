@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { AmbientBackground } from "@/components/ambient-background";
 import Certifications from "@/components/sections/CertificationsSection";
 import ExperienceSection from "@/components/sections/ExperienceSection";
 import TechStack from "@/components/sections/TechStack";
@@ -11,16 +9,9 @@ import AboutSection from "@/components/sections/AboutSection";
 import ProfileSection from "@/components/sections/ProfileSection";
 import { RevealSequence } from "@/components/RevealSequence";
 
-const Index = () => {
-
-  useEffect(() => {
-    document.title = "Andrei Lopez — Software Engineer";
-  }, []);
-
-  return (
-    <main className="min-h-screen text-foreground">
-      <AmbientBackground />
-      <div className="mx-auto max-w-5xl px-4 md:px-8 py-6 md:py-10">
+const Index = () => (
+  <main className="min-h-screen text-foreground">
+    <div className="mx-auto max-w-5xl px-4 md:px-8 py-6 md:py-10">
         <ProfileSection />
 
         <AboutSection />
@@ -43,7 +34,6 @@ const Index = () => {
         <Footer />
       </div>
     </main>
-  );
-};
+);
 
 export default Index;
