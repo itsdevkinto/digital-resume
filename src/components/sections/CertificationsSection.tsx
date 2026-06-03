@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 import { MiniWebsiteModal } from "@/components/ui/mini-website-modal";
 import { TbCloud, TbCode, TbServer, TbCertificate } from "react-icons/tb";
 import type { IconType } from "react-icons/lib";
-import { FaAws, FaCertificate } from "react-icons/fa";
+import { FaAws } from "react-icons/fa";
+import { SiTata } from "react-icons/si";
 import { FcGoogle } from "react-icons/fc";
 import { GrOracle } from "react-icons/gr";
 
@@ -53,8 +54,8 @@ const certificationsDetails: Record<
       {
         name: "Software Engineering",
         issuer: "TestDome",
-        orgIcon: FaCertificate,
-        orgColor: "text-emerald-500",
+        orgIcon: SiTata,
+        orgColor: "text-[#4f84c4]",
         description:
           "Certified in core software engineering concepts including data structures, algorithms, and system design best practices.",
       },
