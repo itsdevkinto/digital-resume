@@ -6,7 +6,7 @@ import { MiniWebsiteModal } from "@/components/ui/mini-website-modal";
 import { TbCloud, TbCode, TbServer, TbCertificate } from "react-icons/tb";
 import type { IconType } from "react-icons/lib";
 import { FaAws, FaCertificate } from "react-icons/fa";
-import { SiGoogle } from "react-icons/si";
+import { FcGoogle } from "react-icons/fc";
 import { GrOracle } from "react-icons/gr";
 
 interface CertDetailItem {
@@ -33,8 +33,7 @@ const certificationsDetails: Record<string, { icon: React.ComponentType<{ classN
       {
         name: "Google Cloud Professional",
         issuer: "Google",
-        orgIcon: SiGoogle,
-        orgColor: "text-[#4285F4]",
+        orgIcon: FcGoogle,
         description:
           "Demonstrated proficiency in designing, developing, and managing GCP solutions with scalable cloud architecture.",
       },
@@ -90,7 +89,7 @@ const Certifications = () => {
 
   const certifications: { name: string; issuer: string; orgIcon?: IconType; orgColor?: string }[] = [
     { name: "AWS Solutions Architect", issuer: "Amazon", orgIcon: FaAws, orgColor: "text-[#FF9900]" },
-    { name: "Google Cloud Professional", issuer: "Google", orgIcon: SiGoogle, orgColor: "text-[#4285F4]" },
+    { name: "Google Cloud Professional", issuer: "Google", orgIcon: FcGoogle },
     { name: "Software Engineering", issuer: "TestDome", orgIcon: FaCertificate, orgColor: "text-emerald-500" },
     { name: "Generative AI Professional", issuer: "Oracle", orgIcon: GrOracle, orgColor: "text-[#F80000]" },
   ];
@@ -141,21 +140,17 @@ const Certifications = () => {
             >
               <button
                 onClick={() => setActiveCategory(category)}
-                className="w-full text-left cursor-pointer flex items-start gap-3"
+                className="w-full text-left cursor-pointer"
               >
-                {c.orgIcon && (
-                  <div className="shrink-0 mt-0.5">
-                    <c.orgIcon className={`w-5 h-5 ${c.orgColor ?? "text-foreground/30"}`} />
-                  </div>
-                )}
-                <div className="min-w-0">
-                  <h3 className="font-bold text-xs sm:text-sm leading-snug text-foreground">
-                    {c.name}
-                  </h3>
-                  <p className="text-xs font-medium text-foreground/75 mt-1">
-                    {c.issuer}
-                  </p>
-                </div>
+                <h3 className="font-bold text-xs sm:text-sm leading-snug text-foreground">
+                  {c.name}
+                </h3>
+                <p className="text-xs font-medium text-foreground/75 mt-1 flex items-center gap-1.5">
+                  {c.orgIcon && (
+                    <c.orgIcon className={`w-4 h-4 ${c.orgColor ?? "text-foreground/30"}`} />
+                  )}
+                  {c.issuer}
+                </p>
               </button>
             </Reveal>
           );
@@ -187,15 +182,13 @@ const Certifications = () => {
                   className="bg-background hover:bg-secondary-foreground/20 border border-black/25 dark:border-white/5 rounded-xl px-4 py-4 sm:px-5 sm:py-4 flex flex-col gap-2"
                 >
                   <div className="flex items-start justify-between gap-4">
-                    <div className="flex items-center gap-2.5 min-w-0">
+                    <h4 className="font-medium text-foreground text-sm sm:text-base leading-tight">
+                      {item.name}
+                    </h4>
+                    <span className="text-[10px] sm:text-xs font-mono text-muted-foreground px-2 py-0.5 rounded-md bg-secondary shrink-0 flex items-center gap-1">
                       {item.orgIcon && (
-                        <item.orgIcon className={`w-5 h-5 shrink-0 ${item.orgColor ?? "text-foreground/30"}`} />
+                        <item.orgIcon className={`w-3.5 h-3.5 ${item.orgColor ?? "text-foreground/30"}`} />
                       )}
-                      <h4 className="font-medium text-foreground text-sm sm:text-base leading-tight">
-                        {item.name}
-                      </h4>
-                    </div>
-                    <span className="text-[10px] sm:text-xs font-mono text-muted-foreground px-2 py-0.5 rounded-md bg-secondary shrink-0">
                       {item.issuer}
                     </span>
                   </div>
