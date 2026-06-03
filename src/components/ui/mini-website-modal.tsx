@@ -393,7 +393,7 @@ const ModalInner = ({
     </button>
 
     {isMobile && (
-      <div className="flex flex-col shrink-0 border-b border-black/10 dark:border-white/5 dark:bg-dark-surface pb-3">
+      <div className="flex flex-col shrink-0 border-b border-black/10 dark:border-white/5 dark:bg-white/4 pb-3">
         <div className="flex items-center gap-2 px-5 pb-3 pr-14">
           <HeaderIcon className="w-4 h-4" />
           <span className="text-[11px] font-semibold tracking-wider uppercase">
@@ -431,7 +431,7 @@ const ModalInner = ({
     )}
 
     {!isMobile && (
-      <div className="w-48 shrink-0 dark:bg-dark-surface border-r border-black/10 dark:border-white/5 flex flex-col py-5 px-3 gap-0.5">
+      <div className="w-48 shrink-0 dark:bg-white/4 border-r border-black/10 dark:border-white/5 flex flex-col py-5 px-3 gap-0.5">
         <div className="flex items-center gap-2 px-3 pb-4">
           <HeaderIcon className="w-4 h-4" />
           <span className="text-[11px] font-semibold tracking-wider uppercase">
@@ -463,7 +463,7 @@ const ModalInner = ({
       </div>
     )}
 
-    <div className="flex-1 overflow-y-auto px-5 md:px-8 md:py-6 relative bg-background dark:bg-dark-surface">
+    <div className="flex-1 overflow-y-auto px-5 md:px-8 md:py-6 relative bg-background dark:bg-white/4">
       {/* key here forces a real DOM remount so the CSS animation re-fires on category switch */}
       <div
         key={displayCategory}
