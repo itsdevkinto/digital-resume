@@ -16,13 +16,13 @@ A glassmorphic single-page resume for **Andrei Lopez** — full-stack engineer, 
 | Route | Content |
 |---|---|
 | `/` | Homepage — profile, about, experience, tech stack, projects, certifications, recommendations, contact |
-| `/achievements` | Blog-style Awards, Publications, Speaking sections with pill navigation and fade transitions |
+| `/achievements` | Card-grid Awards, Publications, Speaking with pill navigation, branded org icons, and fade transitions |
 | `*` | 404 |
 
 ## Features
 
 - **Glassmorphic design** — translucent surfaces, ambient gradient lamps, subtle blur
-- **Dark mode** — context-driven toggle on every page, persisted to `localStorage`, respects `prefers-color-scheme`
+- **Dark mode** — context-driven toggle on every page, persisted to `localStorage`, respects `prefers-color-scheme`, neutral gray-black palette with layered background hierarchy
 - **Scroll-reveal animations** — IntersectionObserver-based blur + translate entrance on section scroll
 - **Tabbed Achievements** — section pill navigation with Framer Motion fade transitions, URL hash sync, browser back/forward support
 - **Tech stack badges** — brand-color icons on every skill pill (React, TypeScript, Docker, etc.)

@@ -47,6 +47,11 @@ Add `<Route path="/projects" element={<Projects />} />` in `App.tsx` above the c
 ### Homepage link
 Change `href="#"` → `<Link to="/projects">` in `ProjectsSection.tsx`. Optionally add a badge in `ProfileSection.tsx`.
 
+### Design references
+- Follow Achievements card style: `dark:bg-white/4` container with `dark:bg-dark-surface` inner cards, left-aligned org icons with brand colors, entry numbers, hover lift
+- Add `orgIcon?: IconType; orgColor?: string` to `Project` interface for project org/brand visual anchors (like Achievements)
+- Use the same `hover:-translate-y-0.5 hover:shadow-lg` card interaction pattern
+
 ### Out of scope (first pass)
 - No modal, no detail page, no sub-routes
 - No categorization/tabs/pill nav
