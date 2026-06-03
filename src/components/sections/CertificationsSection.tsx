@@ -145,7 +145,7 @@ const Certifications = () => {
                 <h3 className="font-bold text-xs sm:text-sm leading-snug text-foreground">
                   {c.name}
                 </h3>
-                <p className="text-xs font-medium text-foreground/75 mt-2 flex items-center gap-1">
+                <p className="text-xs font-medium text-foreground/75 mt-2 inline-flex items-center gap-1">
                   {c.orgIcon && (
                     <c.orgIcon className={`size-4 shrink-0 ${c.orgColor ?? "text-foreground/30"}`} />
                   )}
