@@ -100,7 +100,7 @@ const Projects = () => {
             href="https://github.com/itsdevkinto"
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 flex items-center gap-2 rounded-xl border border-black/25 dark:border-white/5 bg-background dark:bg-dark-surface px-3.5 py-2.5 text-xs font-medium text-foreground/65 hover:text-foreground hover:-translate-y-0.5 hover:shadow-md transition duration-300 ease-out"
+            className="shrink-0 self-center flex items-center gap-2 rounded-xl border border-black/25 dark:border-white/5 bg-background dark:bg-dark-surface px-3.5 py-2.5 text-xs font-medium text-foreground/65 hover:text-foreground hover:-translate-y-0.5 hover:shadow-md transition duration-300 ease-out"
           >
             <SiGithub className="w-4 h-4" />
             <span className="hidden sm:inline">GitHub Profile</span>
@@ -115,7 +115,7 @@ const Projects = () => {
               onClick={() => window.open(p.liveUrl, "_blank")}
             >
               <div
-                className={`h-40 sm:h-48 bg-gradient-to-br ${p.gradient}`}
+                className={`h-40 sm:h-48 bg-linear-to-br ${p.gradient}`}
               />
               <div className="p-4 sm:p-5">
                 <div className="flex items-start justify-between gap-3 mb-2">
@@ -129,11 +129,12 @@ const Projects = () => {
                 </p>
                 {p.ghUrl && (
                   <button
+                    type="button"
                     onClick={(e) => {
                       e.stopPropagation();
                       window.open(p.ghUrl, "_blank");
                     }}
-                    className="mt-3 sm:mt-4 inline-flex items-center gap-1.5 text-xs text-foreground/50 hover:text-foreground transition-colors"
+                    className="mt-3 cursor-pointer sm:mt-4 inline-flex items-center gap-1.5 text-xs text-foreground/50 hover:text-foreground transition-colors"
                   >
                     <SiGithub className="w-3.5 h-3.5" />
                             Source
