@@ -184,7 +184,7 @@ const Certifications = () => {
                     <h4 className="font-medium text-foreground text-sm sm:text-base leading-tight">
                       {item.name}
                     </h4>
-                    <span className="text-[10px] sm:text-xs font-mono text-muted-foreground px-2 py-0.5 rounded-md bg-secondary shrink-0 flex items-center gap-1">
+                    <span className="text-[10px] sm:text-xs font-mono text-muted-foreground px-2 py-0.5 rounded-md bg-secondary shrink-0 inline-flex items-center gap-1">
                       {item.orgIcon && (
                         <item.orgIcon className={`w-3.5 h-3.5 shrink-0 ${item.orgColor ?? "text-foreground/30"}`} />
                       )}
