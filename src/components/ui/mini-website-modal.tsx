@@ -114,8 +114,7 @@ export const MiniWebsiteModal = ({
     el.style.transition = `transform ${CLOSE_DURATION} ${SHEET_EASE}`;
     el.style.transform = `translateY(${window.innerHeight}px)`;
     if (bd) {
-      bd.style.transition = `opacity ${CLOSE_DURATION} ease`;
-      bd.style.opacity = "0";
+      bd.style.animation = `sheet-fade-out ${CLOSE_DURATION} ease forwards`;
     }
     setTimeout(onClose, parseFloat(CLOSE_DURATION) * 1000);
   }, [onClose]);
@@ -266,13 +265,24 @@ export const MiniWebsiteModal = ({
     <AnimatePresence>
       {open && (
         <>
-          {/* Backdrop — fades in via CSS, fades out imperatively in closeSheet */}
-          <div
-            ref={backdropRef}
-            onClick={handleOverlayClick}
-            className="fixed inset-0 z-9998 bg-black/40 pointer-events-auto"
-            style={{ animation: "sheet-fade-in 0.2s ease forwards" }}
-          />
+          {isMobile ? (
+            <div
+              ref={backdropRef}
+              onClick={handleOverlayClick}
+              className="fixed inset-0 z-9998 bg-black/40 pointer-events-auto"
+              style={{ animation: "sheet-fade-in 0.2s ease forwards" }}
+            />
+          ) : (
+            <motion.div
+              key="backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              onClick={handleOverlayClick}
+              className="fixed inset-0 z-9998 bg-black/40 pointer-events-auto"
+            />
+          )}
 
           <div
             className={cn(
