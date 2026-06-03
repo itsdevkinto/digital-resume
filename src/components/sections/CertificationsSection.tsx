@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { MiniWebsiteModal } from "@/components/ui/mini-website-modal";
 import { TbCloud, TbCode, TbServer, TbCertificate } from "react-icons/tb";
 import type { IconType } from "react-icons/lib";
-import { FaAws } from "react-icons/fa";
+import { FaAws, FaCertificate } from "react-icons/fa";
 import { SiGoogle } from "react-icons/si";
 import { GrOracle } from "react-icons/gr";
 
@@ -26,7 +26,7 @@ const certificationsDetails: Record<string, { icon: React.ComponentType<{ classN
         name: "AWS Solutions Architect",
         issuer: "Amazon",
         orgIcon: FaAws,
-        orgColor: "text-orange-400",
+        orgColor: "text-[#FF9900]",
         description:
           "Validated expertise in designing distributed systems on AWS using cost-optimization and best-practice architectural principles.",
       },
@@ -34,7 +34,7 @@ const certificationsDetails: Record<string, { icon: React.ComponentType<{ classN
         name: "Google Cloud Professional",
         issuer: "Google",
         orgIcon: SiGoogle,
-        orgColor: "text-blue-400",
+        orgColor: "text-[#4285F4]",
         description:
           "Demonstrated proficiency in designing, developing, and managing GCP solutions with scalable cloud architecture.",
       },
@@ -47,6 +47,8 @@ const certificationsDetails: Record<string, { icon: React.ComponentType<{ classN
       {
         name: "Software Engineering",
         issuer: "TestDome",
+        orgIcon: FaCertificate,
+        orgColor: "text-emerald-500",
         description:
           "Certified in core software engineering concepts including data structures, algorithms, and system design best practices.",
       },
@@ -60,7 +62,7 @@ const certificationsDetails: Record<string, { icon: React.ComponentType<{ classN
         name: "Generative AI Professional",
         issuer: "Oracle",
         orgIcon: GrOracle,
-        orgColor: "text-red-400",
+        orgColor: "text-[#F80000]",
         description:
           "Specialized certification in generative AI models, prompt engineering, and AI application development using Oracle's AI platform.",
       },
@@ -87,10 +89,10 @@ const Certifications = () => {
   };
 
   const certifications: { name: string; issuer: string; orgIcon?: IconType; orgColor?: string }[] = [
-    { name: "AWS Solutions Architect", issuer: "Amazon", orgIcon: FaAws, orgColor: "text-orange-400" },
-    { name: "Google Cloud Professional", issuer: "Google", orgIcon: SiGoogle, orgColor: "text-blue-400" },
-    { name: "Software Engineering", issuer: "TestDome" },
-    { name: "Generative AI Professional", issuer: "Oracle", orgIcon: GrOracle, orgColor: "text-red-400" },
+    { name: "AWS Solutions Architect", issuer: "Amazon", orgIcon: FaAws, orgColor: "text-[#FF9900]" },
+    { name: "Google Cloud Professional", issuer: "Google", orgIcon: SiGoogle, orgColor: "text-[#4285F4]" },
+    { name: "Software Engineering", issuer: "TestDome", orgIcon: FaCertificate, orgColor: "text-emerald-500" },
+    { name: "Generative AI Professional", issuer: "Oracle", orgIcon: GrOracle, orgColor: "text-[#F80000]" },
   ];
 
   useEffect(() => {
