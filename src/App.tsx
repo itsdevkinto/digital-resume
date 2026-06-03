@@ -35,16 +35,20 @@ const Layout = () => {
   );
 };
 
+export const AppRoutes = () => (
+  <Routes>
+    <Route element={<Layout />}>
+      <Route path="/achievements" element={<Achievements />} />
+      <Route path="/projects" element={<Projects />} />
+      <Route path="*" element={<NotFound />} />
+    </Route>
+  </Routes>
+);
+
 const App = () => (
   <DarkProvider>
     <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/achievements" element={<Achievements />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+      <AppRoutes />
     </BrowserRouter>
   </DarkProvider>
 );
