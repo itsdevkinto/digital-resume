@@ -31,7 +31,7 @@ const techStackDetails: Record<
     icon: React.ComponentType<{ className?: string }>;
     description: string;
     mobileLabel?: string;
-    skills: { name: string; level: number; Icon: IconType; color: string }[];
+    skills: { name: string; Icon: IconType; color: string }[];
   }
 > = {
   Frontend: {
@@ -39,12 +39,12 @@ const techStackDetails: Record<
     description:
       "Building responsive, accessible, and performant user interfaces.",
     skills: [
-      { name: "React", level: 95, Icon: SiReact, color: "text-[#61DAFB]" },
-      { name: "TypeScript", level: 85, Icon: SiTypescript, color: "text-[#3178C6]" },
-      { name: "JavaScript", level: 90, Icon: SiJavascript, color: "text-[#F7DF1E]" },
-      { name: "Next.js", level: 80, Icon: SiNextdotjs, color: "text-foreground" },
-      { name: "Vue.js", level: 75, Icon: SiVuedotjs, color: "text-[#4FC08D]" },
-      { name: "Tailwind CSS", level: 95, Icon: SiTailwindcss, color: "text-[#06B6D4]" },
+      { name: "React", Icon: SiReact, color: "text-[#61DAFB]" },
+      { name: "TypeScript", Icon: SiTypescript, color: "text-[#3178C6]" },
+      { name: "JavaScript", Icon: SiJavascript, color: "text-[#F7DF1E]" },
+      { name: "Next.js", Icon: SiNextdotjs, color: "text-foreground" },
+      { name: "Vue.js", Icon: SiVuedotjs, color: "text-[#4FC08D]" },
+      { name: "Tailwind CSS", Icon: SiTailwindcss, color: "text-[#06B6D4]" },
     ],
   },
   Backend: {
@@ -52,12 +52,12 @@ const techStackDetails: Record<
     description:
       "Designing scalable APIs, managing databases, and server logic.",
     skills: [
-      { name: "Node.js", level: 85, Icon: SiNodedotjs, color: "text-[#339933]" },
-      { name: "PostgreSQL", level: 85, Icon: SiPostgresql, color: "text-[#4169E1]" },
-      { name: "PHP", level: 80, Icon: SiPhp, color: "text-[#777BB4]" },
-      { name: "MongoDB", level: 80, Icon: SiMongodb, color: "text-[#47A248]" },
-      { name: "Laravel", level: 75, Icon: SiLaravel, color: "text-[#FF2D20]" },
-      { name: "Python", level: 70, Icon: SiPython, color: "text-[#3776AB]" },
+      { name: "Node.js", Icon: SiNodedotjs, color: "text-[#339933]" },
+      { name: "PostgreSQL", Icon: SiPostgresql, color: "text-[#4169E1]" },
+      { name: "PHP", Icon: SiPhp, color: "text-[#777BB4]" },
+      { name: "MongoDB", Icon: SiMongodb, color: "text-[#47A248]" },
+      { name: "Laravel", Icon: SiLaravel, color: "text-[#FF2D20]" },
+      { name: "Python", Icon: SiPython, color: "text-[#3776AB]" },
     ],
   },
   "DevOps & Cloud": {
@@ -66,10 +66,10 @@ const techStackDetails: Record<
       "Deploying infrastructure, setting up CI/CD, and scaling apps.",
     mobileLabel: "DevOps",
     skills: [
-      { name: "Cloudflare", level: 85, Icon: SiCloudflare, color: "text-[#F38020]" },
-      { name: "GitHub Actions", level: 85, Icon: SiGithubactions, color: "text-[#2088FF]" },
-      { name: "Docker", level: 80, Icon: SiDocker, color: "text-[#2496ED]" },
-      { name: "Kubernetes", level: 60, Icon: SiKubernetes, color: "text-[#326CE5]" },
+      { name: "Cloudflare", Icon: SiCloudflare, color: "text-[#F38020]" },
+      { name: "GitHub Actions", Icon: SiGithubactions, color: "text-[#2088FF]" },
+      { name: "Docker", Icon: SiDocker, color: "text-[#2496ED]" },
+      { name: "Kubernetes", Icon: SiKubernetes, color: "text-[#326CE5]" },
     ],
   },
 };
@@ -174,14 +174,11 @@ const TechStack = () => {
                       <skill.Icon className={`w-3.5 h-3.5 ${skill.color} shrink-0`} />
                       <span className="truncate">{skill.name}</span>
                     </span>
-                    <span className="text-[10px] sm:text-xs text-muted-foreground font-mono tabular-nums shrink-0">
-                      {skill.level}%
-                    </span>
                   </div>
                   <div className="h-0.75 w-full bg-secondary rounded-full overflow-hidden shrink-0">
                     <motion.div
                       initial={{ scaleX: 0 }}
-                      animate={{ scaleX: skill.level / 100 }}
+                      animate={{ scaleX: 1 }}
                       transition={{
                         duration: 0.6,
                         delay: 0.1 + idx * 0.04,
