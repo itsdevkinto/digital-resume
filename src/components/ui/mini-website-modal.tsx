@@ -463,7 +463,7 @@ const ModalInner = ({
               )}
             >
               <Icon className="h-5 w-5 shrink-0" />
-              <span className="truncate min-w-0 leading-none">{cat}</span>
+              <span className="max-w-24 leading-tight">{cat}</span>
               {isActive && (
                 <span className="bg-foreground/50 ml-auto h-1.5 w-1.5 shrink-0 rounded-full" />
               )}
