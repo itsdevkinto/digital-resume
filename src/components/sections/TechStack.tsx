@@ -126,7 +126,7 @@ const TechStack = () => {
         </button>
       }
     >
-      <div className="grid grid-rows-3 gap-3 sm:gap-4">
+      <div className="grid grid-rows-3 md:grid-cols-2 gap-3 sm:gap-4">
         {(Object.keys(techStackDetails) as Category[]).map((cat, i) => {
           const skills = techStackDetails[cat].skills;
           return (
@@ -169,7 +169,7 @@ const TechStack = () => {
         renderContent={(cat) => {
           const category = cat as Category;
           return (
-            <div className="grid grid-cols-2 gap-2 pb-8 sm:gap-1 md:pb-0">
+            <div className="grid h-full grid-cols-2 auto-rows-1fr gap-2 pb-8 sm:gap-1 md:pb-0">
               {techStackDetails[category].skills.map((skill, idx) => (
                 <motion.div
                   key={skill.name}
@@ -180,7 +180,7 @@ const TechStack = () => {
                     delay: idx * 0.04,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="bg-background flex flex-col gap-2 rounded-xl border border-black/25 px-2.5 py-3 sm:gap-2.5 sm:px-4 sm:py-3.5 md:p-5 dark:border-white/5"
+                  className="bg-background flex h-full flex-col gap-2 rounded-xl border border-black/25 px-2.5 py-3 sm:gap-2.5 sm:px-4 sm:py-3.5 md:p-5 dark:border-white/5"
                 >
                   <div className="flex items-center justify-between gap-1">
                     <span className="flex min-w-0 items-center gap-1.5 text-xs font-medium sm:gap-2 sm:text-sm">
