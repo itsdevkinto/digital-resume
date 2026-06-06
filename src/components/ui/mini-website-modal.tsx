@@ -456,14 +456,14 @@ const ModalInner = ({
               key={cat}
               onClick={() => onSwitch(cat)}
               className={cn(
-                "flex h-10 w-fit shrink-0 items-center gap-2.5 rounded-lg px-3 text-left text-sm transition-all",
+                "flex h-10 w-full shrink-0 items-center gap-2.5 rounded-lg px-3 text-left text-sm transition-all",
                 isActive
                   ? "border-foreground/30 text-foreground border font-medium"
                   : "text-foreground/55 hover:text-foreground border border-transparent",
               )}
             >
               <Icon className="h-5 w-5 shrink-0" />
-              <span className="leading-none">{cat}</span>
+              <span className="truncate min-w-0 leading-none">{cat}</span>
               {isActive && (
                 <span className="bg-foreground/50 ml-auto h-1.5 w-1.5 shrink-0 rounded-full" />
               )}
