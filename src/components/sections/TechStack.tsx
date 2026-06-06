@@ -169,7 +169,7 @@ const TechStack = () => {
         renderContent={(cat) => {
           const category = cat as Category;
           return (
-            <div className="grid grid-cols-2 gap-2 pb-8 sm:gap-3 md:pb-0">
+            <div className="grid grid-cols-2 gap-2 pb-8 sm:gap-1 md:pb-0">
               {techStackDetails[category].skills.map((skill, idx) => (
                 <motion.div
                   key={skill.name}
