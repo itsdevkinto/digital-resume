@@ -262,109 +262,109 @@ export const MiniWebsiteModal = ({
 
   return typeof document !== "undefined"
     ? createPortal(
-    <AnimatePresence>
-      {open && (
-        <>
-          {isMobile ? (
-            <div
-              ref={backdropRef}
-              onClick={handleOverlayClick}
-              className="fixed inset-0 z-9998 bg-black/40 pointer-events-auto"
-              style={{ animation: "sheet-fade-in 0.2s ease forwards" }}
-            />
-          ) : (
-            <motion.div
-              key="backdrop"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              onClick={handleOverlayClick}
-              className="fixed inset-0 z-9998 bg-black/40 pointer-events-auto"
-            />
-          )}
-
-          <div
-            className={cn(
-              "fixed inset-0 z-9999 flex pointer-events-none",
-              isMobile
-                ? "items-end justify-center"
-                : "items-center justify-center md:p-16",
-            )}
-          >
-            {isMobile ? (
-              // Sheet is always full SNAP_MAX height, parked off-screen via translateY.
-              // No Framer on the mobile path at all — pure CSS transform.
-              <div
-                className="absolute bottom-0 left-0 right-0 pointer-events-none"
-                style={{ height: `${SNAP_MAX_VH * 100}vh` }}
-              >
+        <AnimatePresence>
+          {open && (
+            <>
+              {isMobile ? (
                 <div
-                  ref={sheetRef}
-                  onPointerDown={onPointerDown}
-                  onPointerMove={onPointerMove}
-                  onPointerUp={onPointerUp}
-                  onPointerCancel={onPointerUp}
-                  className={cn(
-                    "pointer-events-auto absolute inset-0 bg-background border border-black/25 dark:border-white/5",
-                    "rounded-t-2xl shadow-lg flex flex-col overflow-hidden",
-                  )}
-                  // translateY set imperatively via ref — never via React state
-                  style={{ willChange: "transform", touchAction: "none" }}
-                >
-                  {/* Drag handle */}
-                  <div className="shrink-0 dark:bg-white/4 flex justify-center pt-3 pb-2 cursor-grab active:cursor-grabbing">
-                    <div className="w-10 h-1 rounded-full bg-muted-foreground/30" />
-                  </div>
+                  ref={backdropRef}
+                  onClick={handleOverlayClick}
+                  className="pointer-events-auto fixed inset-0 z-9998 bg-black/40"
+                  style={{ animation: "sheet-fade-in 0.2s ease forwards" }}
+                />
+              ) : (
+                <motion.div
+                  key="backdrop"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  onClick={handleOverlayClick}
+                  className="pointer-events-auto fixed inset-0 z-9998 bg-black/40"
+                />
+              )}
 
-                  <ModalInner
-                    isMobile={isMobile}
-                    displayCategory={displayCategory}
-                    categories={categories}
-                    categoryKeys={categoryKeys}
-                    headerLabel={headerLabel}
-                    HeaderIcon={HeaderIcon}
-                    onClose={onClose}
-                    onDismiss={closeSheet}
-                    onSwitch={onSwitch}
-                    renderContent={renderContent}
-                  />
-                </div>
-              </div>
-            ) : (
-              // ── Desktop modal — Framer only here ─────────────────────────
-              <motion.div
-                key="desktop-modal"
-                variants={desktopVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={desktopTransition}
+              <div
                 className={cn(
-                  "pointer-events-auto relative bg-background border border-black/25 dark:border-white/5",
-                  "rounded-2xl shadow-lg w-full max-w-5xl h-200 flex flex-row overflow-hidden",
+                  "pointer-events-none fixed inset-0 z-9999 flex",
+                  isMobile
+                    ? "items-end justify-center"
+                    : "items-center justify-center md:p-16",
                 )}
               >
-                <ModalInner
-                  isMobile={isMobile}
-                  displayCategory={displayCategory}
-                  categories={categories}
-                  categoryKeys={categoryKeys}
-                  headerLabel={headerLabel}
-                  HeaderIcon={HeaderIcon}
-                  onClose={onClose}
-                  onDismiss={onClose}
-                  onSwitch={onSwitch}
-                  renderContent={renderContent}
-                />
-              </motion.div>
-            )}
-          </div>
-        </>
-      )}
-    </AnimatePresence>,
-    document.body,
-  )
+                {isMobile ? (
+                  // Sheet is always full SNAP_MAX height, parked off-screen via translateY.
+                  // No Framer on the mobile path at all — pure CSS transform.
+                  <div
+                    className="pointer-events-none absolute right-0 bottom-0 left-0"
+                    style={{ height: `${SNAP_MAX_VH * 100}vh` }}
+                  >
+                    <div
+                      ref={sheetRef}
+                      onPointerDown={onPointerDown}
+                      onPointerMove={onPointerMove}
+                      onPointerUp={onPointerUp}
+                      onPointerCancel={onPointerUp}
+                      className={cn(
+                        "bg-background pointer-events-auto absolute inset-0 border border-black/25 dark:border-white/5",
+                        "flex flex-col overflow-hidden rounded-t-2xl shadow-lg",
+                      )}
+                      // translateY set imperatively via ref — never via React state
+                      style={{ willChange: "transform", touchAction: "none" }}
+                    >
+                      {/* Drag handle */}
+                      <div className="flex shrink-0 cursor-grab justify-center pt-3 pb-2 active:cursor-grabbing dark:bg-white/4">
+                        <div className="bg-muted-foreground/30 h-1 w-10 rounded-full" />
+                      </div>
+
+                      <ModalInner
+                        isMobile={isMobile}
+                        displayCategory={displayCategory}
+                        categories={categories}
+                        categoryKeys={categoryKeys}
+                        headerLabel={headerLabel}
+                        HeaderIcon={HeaderIcon}
+                        onClose={onClose}
+                        onDismiss={closeSheet}
+                        onSwitch={onSwitch}
+                        renderContent={renderContent}
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  // ── Desktop modal — Framer only here ─────────────────────────
+                  <motion.div
+                    key="desktop-modal"
+                    variants={desktopVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    transition={desktopTransition}
+                    className={cn(
+                      "bg-background pointer-events-auto relative border border-black/25 dark:border-white/5",
+                      "flex h-200 w-full max-w-5xl flex-row overflow-hidden rounded-2xl shadow-lg",
+                    )}
+                  >
+                    <ModalInner
+                      isMobile={isMobile}
+                      displayCategory={displayCategory}
+                      categories={categories}
+                      categoryKeys={categoryKeys}
+                      headerLabel={headerLabel}
+                      HeaderIcon={HeaderIcon}
+                      onClose={onClose}
+                      onDismiss={onClose}
+                      onSwitch={onSwitch}
+                      renderContent={renderContent}
+                    />
+                  </motion.div>
+                )}
+              </div>
+            </>
+          )}
+        </AnimatePresence>,
+        document.body,
+      )
     : null;
 };
 
@@ -397,15 +397,15 @@ const ModalInner = ({
   <>
     <button
       onClick={onDismiss}
-      className="absolute top-4.5 md:top-4 right-5 md:right-4 z-10 w-7 h-7 flex items-center justify-center rounded-lg hover:text-foreground transition-colors"
+      className="hover:text-foreground absolute top-4.5 right-5 z-10 flex h-7 w-7 items-center justify-center rounded-lg transition-colors md:top-4 md:right-4"
     >
-      <X className="w-3.5 h-3.5" />
+      <X className="h-3.5 w-3.5" />
     </button>
 
     {isMobile && (
-      <div className="flex flex-col shrink-0 border-b border-black/10 dark:border-white/5 dark:bg-white/4 pb-3">
-        <div className="flex items-center gap-2 px-5 pb-3 pr-14">
-          <HeaderIcon className="w-4 h-4" />
+      <div className="flex shrink-0 flex-col border-b border-black/10 pb-3 dark:border-white/5 dark:bg-white/4">
+        <div className="flex items-center gap-2 px-5 pr-14 pb-3">
+          <HeaderIcon className="h-4 w-4" />
           <span className="text-[11px] font-semibold tracking-wider uppercase">
             {headerLabel}
           </span>
@@ -425,13 +425,13 @@ const ModalInner = ({
                 key={cat}
                 onClick={() => onSwitch(cat)}
                 className={cn(
-                  "h-9 flex items-center justify-center gap-1.5 px-2 rounded-full text-xs transition-all border min-w-0",
+                  "flex h-9 min-w-0 items-center justify-center gap-1.5 rounded-full border px-2 text-xs transition-all",
                   isActive
                     ? "border-foreground/50 text-foreground font-medium"
-                    : "border-black/25 dark:border-white/5 text-foreground/65 hover:text-foreground",
+                    : "text-foreground/65 hover:text-foreground border-black/25 dark:border-white/5",
                 )}
               >
-                <Icon className="w-3.5 h-3.5 shrink-0" />
+                <Icon className="h-3.5 w-3.5 shrink-0" />
                 <span className="truncate">{displayName}</span>
               </button>
             );
@@ -441,9 +441,9 @@ const ModalInner = ({
     )}
 
     {!isMobile && (
-      <div className="w-48 shrink-0 dark:bg-white/4 border-r border-black/10 dark:border-white/5 flex flex-col py-5 px-3 gap-0.5">
+      <div className="flex w-48 shrink-0 flex-col gap-0.5 border-r border-black/10 px-3 py-5 dark:border-white/5 dark:bg-white/4">
         <div className="flex items-center gap-2 px-3 pb-4">
-          <HeaderIcon className="w-4 h-4" />
+          <HeaderIcon className="h-4 w-4" />
           <span className="text-[11px] font-semibold tracking-wider uppercase">
             {headerLabel}
           </span>
@@ -456,16 +456,16 @@ const ModalInner = ({
               key={cat}
               onClick={() => onSwitch(cat)}
               className={cn(
-                "h-9 flex items-center gap-2.5 px-3 rounded-lg text-[13px] transition-all text-left w-full shrink-0",
+                "flex h-9 w-full shrink-0 items-center gap-2.5 rounded-lg px-3 text-left text-[13px] transition-all",
                 isActive
-                  ? "border border-foreground/30 text-foreground font-medium"
-                  : "text-foreground/55 border border-transparent hover:text-foreground",
+                  ? "border-foreground/30 text-foreground border font-medium"
+                  : "text-foreground/55 hover:text-foreground border border-transparent",
               )}
             >
-              <Icon className="w-4 h-4 shrink-0" />
-              <span className=" leading-none">{cat}</span>
+              <Icon className="h-4 w-4 shrink-0" />
+              <span className="leading-none">{cat}</span>
               {isActive && (
-                <span className="ml-auto w-1.5 h-1.5 rounded-full bg-foreground/50 shrink-0" />
+                <span className="bg-foreground/50 ml-auto h-1.5 w-1.5 shrink-0 rounded-full" />
               )}
             </button>
           );
@@ -473,17 +473,17 @@ const ModalInner = ({
       </div>
     )}
 
-    <div className="flex-1 overflow-y-auto px-5 md:px-8 md:py-6 relative bg-background dark:bg-white/4">
+    <div className="bg-background relative flex-1 overflow-y-auto px-5 md:px-8 md:py-6 dark:bg-white/4">
       {/* key here forces a real DOM remount so the CSS animation re-fires on category switch */}
       <div
         key={displayCategory}
         style={{ animation: "sheet-fade-in 0.14s ease both" }}
       >
         <div className="mb-4">
-          <h2 className="text-2xl hidden md:block font-semibold mb-1.5">
+          <h2 className="mb-1.5 hidden text-2xl font-semibold md:block">
             {displayCategory}
           </h2>
-          <p className="text-sm hidden md:block text-muted-foreground leading-relaxed">
+          <p className="text-muted-foreground hidden text-sm leading-relaxed md:block">
             {categories[displayCategory]?.description}
           </p>
         </div>

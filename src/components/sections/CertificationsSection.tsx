@@ -83,18 +83,21 @@ const Certifications = () => {
   const [activeCategory, setActiveCategory] = useState<Category | null>(null);
 
   const flatCerts = Object.entries(certificationsDetails).flatMap(
-    ([category, { items }]) => items.map(({ ...item }) => ({
-      ...item,
-      category: category as Category,
-    })),
+    ([category, { items }]) =>
+      items.map(({ ...item }) => ({
+        ...item,
+        category: category as Category,
+      })),
   );
 
   const catConfig = Object.fromEntries(
-    Object.entries(certificationsDetails).map(([key, { icon, description }]) => [
-      key,
-      { icon, description },
-    ]),
-  ) as Record<Category, { icon: React.ComponentType<{ className?: string }>; description: string }>;
+    Object.entries(certificationsDetails).map(
+      ([key, { icon, description }]) => [key, { icon, description }],
+    ),
+  ) as Record<
+    Category,
+    { icon: React.ComponentType<{ className?: string }>; description: string }
+  >;
 
   useEffect(() => {
     document.body.style.overflow = activeCategory ? "hidden" : "unset";
@@ -115,18 +118,18 @@ const Certifications = () => {
     <Reveal
       delay={100}
       as="section"
-      className="p-4 py-8 sm:py-10 border-t dark:border dark:rounded-lg border-black dark:border-white/5 dark:bg-white/4"
+      className="border-t border-black p-4 py-8 sm:py-10 dark:rounded-lg dark:border dark:border-white/5 dark:bg-white/4"
     >
-      <div className="flex items-center justify-between mb-5 sm:mb-6">
+      <div className="mb-5 flex items-center justify-between sm:mb-6">
         <h2
-          className="text-xl sm:text-2xl font-bold tracking-tight"
+          className="text-xl font-bold tracking-tight sm:text-2xl"
           style={{ fontFamily: "var(--font-anthropic-serif)" }}
         >
           Recent Certifications
         </h2>
         <button
           onClick={() => setActiveCategory("Cloud")}
-          className="text-sm font-medium text-foreground/65 hover:text-foreground inline-flex items-center gap-1 cursor-pointer"
+          className="text-foreground/65 hover:text-foreground inline-flex cursor-pointer items-center gap-1 text-sm font-medium"
         >
           View All <ChevronRight className="h-4 w-4" />
         </button>
@@ -137,16 +140,16 @@ const Certifications = () => {
             <Reveal
               key={c.name}
               delay={(i + 1) * 80}
-              className="rounded-md border border-black/25 dark:border-white/5 bg-background dark:bg-dark-surface hover:bg-secondary-foreground/20 transition duration-300 ease-in-out p-3 sm:p-4"
+              className="bg-background dark:bg-dark-surface hover:bg-secondary-foreground/20 rounded-md border border-black/25 p-3 transition duration-300 ease-in-out sm:p-4 dark:border-white/5"
             >
               <button
                 onClick={() => setActiveCategory(c.category)}
-                className="w-full text-left cursor-pointer"
+                className="w-full cursor-pointer text-left"
               >
-                <h3 className="font-bold text-xs sm:text-sm leading-snug text-foreground">
+                <h3 className="text-foreground text-xs leading-snug font-bold sm:text-sm">
                   {c.name}
                 </h3>
-                <p className="text-xs font-medium text-foreground/75 mt-2 inline-flex items-center gap-1">
+                <p className="text-foreground/75 mt-2 inline-flex items-center gap-1 text-xs font-medium">
                   {c.orgIcon && (
                     <c.orgIcon
                       className={`size-4 shrink-0 ${c.orgColor ?? "text-foreground/30"}`}
@@ -182,21 +185,21 @@ const Certifications = () => {
                     delay: idx * 0.04,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="bg-background hover:bg-secondary-foreground/20 border border-black/25 dark:border-white/5 rounded-xl px-4 py-4 sm:px-5 sm:py-4 flex flex-col gap-2"
+                  className="bg-background hover:bg-secondary-foreground/20 flex flex-col gap-2 rounded-xl border border-black/25 px-4 py-4 sm:px-5 sm:py-4 dark:border-white/5"
                 >
-                  <h4 className="font-medium text-foreground text-sm sm:text-base leading-tight">
+                  <h4 className="text-foreground text-sm leading-tight font-medium sm:text-base">
                     {item.name}
                   </h4>
-                  <span className="text-[10px] sm:text-xs font-mono text-muted-foreground px-2 py-0.5 rounded-md bg-secondary shrink-0 inline-flex w-fit items-center gap-1">
+                  <span className="text-muted-foreground bg-secondary inline-flex w-fit shrink-0 items-center gap-1 rounded-md px-2 py-0.5 font-mono text-[10px] sm:text-xs">
                     {" "}
                     {item.orgIcon && (
                       <item.orgIcon
-                        className={`w-3.5 h-3.5 shrink-0 ${item.orgColor ?? "text-foreground/30"}`}
+                        className={`h-3.5 w-3.5 shrink-0 ${item.orgColor ?? "text-foreground/30"}`}
                       />
                     )}
                     {item.issuer}
                   </span>
-                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mt-1">
+                  <p className="text-muted-foreground mt-1 text-xs leading-relaxed sm:text-sm">
                     {item.description}
                   </p>
                 </motion.div>

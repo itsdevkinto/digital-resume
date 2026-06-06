@@ -1,12 +1,17 @@
 import { useEffect } from "react";
-import { BrowserRouter, Outlet, Route, Routes, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Outlet,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 
 import { AmbientBackground } from "./components/ambient-background";
 import Index from "./pages/Index.tsx";
 import Achievements from "./pages/Achievements.tsx";
 import Projects from "./pages/Projects.tsx";
 import NotFound from "./pages/NotFound.tsx";
-
 
 import { DarkProvider } from "./context/dark-context.tsx";
 

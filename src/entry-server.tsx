@@ -9,6 +9,6 @@ export function render(url: string) {
       <DarkProvider>
         <AppRoutes />
       </DarkProvider>
-    </StaticRouter>
+    </StaticRouter>,
   );
 }

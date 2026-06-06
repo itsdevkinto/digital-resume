@@ -1,4 +1,11 @@
-import { createContext, useContext, useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
 
 type DarkContextType = {
   dark: boolean;
@@ -11,14 +18,16 @@ export const DarkContext = createContext<DarkContextType | null>(null);
 export const DarkProvider = ({ children }: { children: React.ReactNode }) => {
   // Determine initial theme: inline script class -> localStorage -> system preference
   const getInitialTheme = (): boolean => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const cls = document.documentElement.className.trim();
-      if (cls === 'dark') return true;
-      if (cls === 'light') return false;
-      const stored = localStorage.getItem('theme');
-      if (stored === 'dark') return true;
-      if (stored === 'light') return false;
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (cls === "dark") return true;
+      if (cls === "light") return false;
+      const stored = localStorage.getItem("theme");
+      if (stored === "dark") return true;
+      if (stored === "light") return false;
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
       return prefersDark;
     }
     return false;
@@ -28,9 +37,13 @@ export const DarkProvider = ({ children }: { children: React.ReactNode }) => {
 
   // Sync class on change
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', dark);
-    document.documentElement.classList.toggle('light', !dark);
-    try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch { /* ignore */ }
+    document.documentElement.classList.toggle("dark", dark);
+    document.documentElement.classList.toggle("light", !dark);
+    try {
+      localStorage.setItem("theme", dark ? "dark" : "light");
+    } catch {
+      /* ignore */
+    }
   }, [dark]);
 
   return (

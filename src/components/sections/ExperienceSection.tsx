@@ -1,4 +1,3 @@
-
 import Reveal from "../Reveal";
 import Section from "../Section";
 
@@ -19,16 +18,16 @@ const experience = [
 const ExperienceSection = () => {
   return (
     <Section title="Experience">
-      <ol className="relative border-l border-black/25 dark:border-white/5 ml-2">
+      <ol className="relative ml-2 border-l border-black/25 dark:border-white/5">
         {experience.map((e, i) => (
           <Reveal
             as="li"
             delay={(i + 1) * 200}
             key={i}
-            className="pl-5 sm:pl-6 pb-5 mr-4 sm:pb-6 last:pb-0 relative group"
+            className="group relative mr-4 pb-5 pl-5 last:pb-0 sm:pb-6 sm:pl-6"
           >
             <span
-              className={`absolute -left-1.25 top-1.5 h-2.5 w-2.5 rounded-sm group-hover:bg-foreground ${
+              className={`group-hover:bg-foreground absolute top-1.5 -left-1.25 h-2.5 w-2.5 rounded-sm ${
                 e.current
                   ? "bg-foreground"
                   : "bg-background border border-black/25 dark:border-white/5"
@@ -36,14 +35,14 @@ const ExperienceSection = () => {
             />
             <div className="flex items-baseline justify-between gap-3">
               <div className="min-w-0">
-                <h3 className="font-bold text-sm sm:text-base leading-snug">
+                <h3 className="text-sm leading-snug font-bold sm:text-base">
                   {e.role}
                 </h3>
-                <p className="text-xs sm:text-sm font-medium text-foreground/75 mt-0.5">
+                <p className="text-foreground/75 mt-0.5 text-xs font-medium sm:text-sm">
                   {e.company}
                 </p>
               </div>
-              <span className="text-xs sm:text-sm font-medium text-foreground/75 tabular-nums shrink-0">
+              <span className="text-foreground/75 shrink-0 text-xs font-medium tabular-nums sm:text-sm">
                 {e.year}
               </span>
             </div>

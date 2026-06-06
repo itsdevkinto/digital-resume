@@ -116,14 +116,13 @@ export const SignatureAnimation = () => {
         }
       `}</style>
 
-
       <svg
         width="89"
         height="66"
         viewBox="0 0 178 131"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="block relative"
+        className="relative block"
         style={{ stroke: "currentColor" }}
       >
         <path
@@ -145,6 +144,6 @@ export const SignatureAnimation = () => {
 };
 
 /** Helper: convert an absolute second to a % of the full cycle, clamped 0–99.9 */
-function pct(sec: number, total: number = SIG_CYCLE): number { 
+function pct(sec: number, total: number = SIG_CYCLE): number {
   return Math.min(99.9, Math.max(0, (sec / total) * 100));
 }

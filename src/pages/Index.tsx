@@ -16,7 +16,7 @@ const Sections = () => (
     <ExperienceSection />
     <TechStack />
     <ProjectsSection />
-    <div className="grid py-4 sm:grid-cols-2 gap-4 sm:gap-2 justify-between">
+    <div className="grid justify-between gap-4 py-4 sm:grid-cols-2 sm:gap-2">
       <Certifications />
       <RecommendationsCarousel />
     </div>
@@ -28,13 +28,21 @@ const Sections = () => (
 const DesktopSections = () => (
   <>
     <RevealSequence step={150}>
-      <SequencedReveal><ProfileSection /></SequencedReveal>
-      <SequencedReveal><AboutSection /></SequencedReveal>
-      <SequencedReveal><ExperienceSection /></SequencedReveal>
-      <SequencedReveal><TechStack /></SequencedReveal>
+      <SequencedReveal>
+        <ProfileSection />
+      </SequencedReveal>
+      <SequencedReveal>
+        <AboutSection />
+      </SequencedReveal>
+      <SequencedReveal>
+        <ExperienceSection />
+      </SequencedReveal>
+      <SequencedReveal>
+        <TechStack />
+      </SequencedReveal>
     </RevealSequence>
     <ProjectsSection />
-    <div className="grid py-4 sm:grid-cols-2 gap-4 sm:gap-2 justify-between">
+    <div className="grid justify-between gap-4 py-4 sm:grid-cols-2 sm:gap-2">
       <Certifications />
       <RecommendationsCarousel />
     </div>
@@ -44,8 +52,8 @@ const DesktopSections = () => (
 );
 
 const Index = () => (
-  <main className="min-h-screen text-foreground">
-    <div className="mx-auto max-w-5xl px-4 md:px-8 py-6 md:py-10">
+  <main className="text-foreground min-h-screen">
+    <div className="mx-auto max-w-5xl px-4 py-6 md:px-8 md:py-10">
       <div className="block md:hidden">
         <Sections />
       </div>

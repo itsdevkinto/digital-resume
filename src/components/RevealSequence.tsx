@@ -1,7 +1,6 @@
 import { createContext, useContext, useRef } from "react";
 import { Reveal } from "@/components/Reveal";
 
-
 type SequenceContextType = {
   next: (duration?: number) => number;
   reset: (to?: number) => void;

@@ -4,7 +4,14 @@ import type { IconType } from "react-icons/lib";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, Moon, Sun } from "lucide-react";
 import { TbTrophy, TbWriting, TbMicrophone2 } from "react-icons/tb";
-import { SiDevpost, SiGithub, Si1Panel, SiHashnode, SiMeetup, SiTechcrunch } from "react-icons/si";
+import {
+  SiDevpost,
+  SiGithub,
+  Si1Panel,
+  SiHashnode,
+  SiMeetup,
+  SiTechcrunch,
+} from "react-icons/si";
 import { FaMedium } from "react-icons/fa";
 import { useDark } from "@/context/dark-context";
 import { cn } from "@/lib/utils";
@@ -175,20 +182,20 @@ const Achievements = () => {
   }, []);
 
   return (
-    <main className="min-h-screen text-foreground relative">
-      <div className="relative z-10 mx-auto w-full max-w-5xl px-5 md:px-10 pt-8 pb-24">
+    <main className="text-foreground relative min-h-screen">
+      <div className="relative z-10 mx-auto w-full max-w-5xl px-5 pt-8 pb-24 md:px-10">
         {/* Back nav + theme toggle */}
-        <div className="flex items-center justify-between mb-6 md:mb-10">
+        <div className="mb-6 flex items-center justify-between md:mb-10">
           <Link
             to="/"
-            className="inline-flex items-center sm:gap-1.5 text-sm hover:text-foreground text-foreground/65 transition-colors"
+            className="hover:text-foreground text-foreground/65 inline-flex items-center text-sm transition-colors sm:gap-1.5"
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className="h-4 w-4" />
             Home
           </Link>
           <button
             onClick={() => setDark((d) => !d)}
-            className="h-8 w-8 inline-flex items-center justify-center rounded-full border border-black/25 dark:border-white/5 hover:bg-accent transition-colors shrink-0"
+            className="hover:bg-accent inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/25 transition-colors dark:border-white/5"
             aria-label="Toggle theme"
           >
             {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
@@ -196,8 +203,8 @@ const Achievements = () => {
         </div>
 
         {/* Section navigation pills + byline */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-10">
-          <div className="flex items-center gap-2 flex-wrap">
+        <div className="mb-10 flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
+          <div className="flex flex-wrap items-center gap-2">
             {sections.map((section) => {
               const Icon = section.icon;
               const isActive = activeSection === section.key;
@@ -206,21 +213,21 @@ const Achievements = () => {
                   key={section.key}
                   onClick={() => setActiveSection(section.key)}
                   className={cn(
-                    "inline-flex items-center gap-2 h-9 px-4 rounded-full text-xs font-medium transition-all border",
+                    "inline-flex h-9 items-center gap-2 rounded-full border px-4 text-xs font-medium transition-all",
                     isActive
                       ? "border-foreground/40 bg-foreground text-background"
-                      : "border-black/20 dark:border-white/20 cursor-pointer hover:text-foreground hover:bg-foreground/10",
+                      : "hover:text-foreground hover:bg-foreground/10 cursor-pointer border-black/20 dark:border-white/20",
                   )}
                 >
-                  <Icon className="w-3.5 h-3.5 shrink-0" />
+                  <Icon className="h-3.5 w-3.5 shrink-0" />
                   {section.label}
                 </button>
               );
             })}
           </div>
-          <div className="flex items-center gap-3 text-xs shrink-0">
+          <div className="flex shrink-0 items-center gap-3 text-xs">
             <span>Andrei Lopez</span>
-            <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+            <span className="bg-muted-foreground/40 h-1 w-1 rounded-full" />
             <span>Updated 2026</span>
           </div>
         </div>
@@ -239,32 +246,36 @@ const Achievements = () => {
                   transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <section id={section.key}>
-
                     {/* Entries */}
-                    <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2">
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
                       {section.items.map((item) => (
                         <article
                           key={item.title}
-                          className="bg-background dark:bg-white/4 border border-black/25 dark:border-white/5 rounded-2xl p-4 sm:p-5 transition duration-300 ease-out hover:-translate-y-0.5 hover:shadow-lg group"
+                          className="bg-background group rounded-2xl border border-black/25 p-4 transition duration-300 ease-out hover:-translate-y-0.5 hover:shadow-lg sm:p-5 dark:border-white/5 dark:bg-white/4"
                         >
                           {item.orgIcon && (
                             <div className="mb-3">
-                              <item.orgIcon className={cn("w-6 h-6", item.orgColor ?? "text-foreground/30")} />
+                              <item.orgIcon
+                                className={cn(
+                                  "h-6 w-6",
+                                  item.orgColor ?? "text-foreground/30",
+                                )}
+                              />
                             </div>
                           )}
                           <div className="flex items-start justify-between gap-3">
                             <div className="min-w-0">
-                              <div className="flex items-center gap-2 mb-1">
-                                <h3 className="font-bold text-sm sm:text-base">
+                              <div className="mb-1 flex items-center gap-2">
+                                <h3 className="text-sm font-bold sm:text-base">
                                   {item.title}
                                 </h3>
                               </div>
-                              <p className="text-xs sm:text-sm text-foreground/80 mt-1 leading-snug">
+                              <p className="text-foreground/80 mt-1 text-xs leading-snug sm:text-sm">
                                 {item.description}
                               </p>
                             </div>
                           </div>
-                          <code className="mt-3 sm:mt-4 inline-block text-xs bg-secondary px-2 py-1 rounded font-mono text-foreground/75">
+                          <code className="bg-secondary text-foreground/75 mt-3 inline-block rounded px-2 py-1 font-mono text-xs sm:mt-4">
                             {item.date}
                           </code>
                         </article>

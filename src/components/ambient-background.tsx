@@ -1,14 +1,13 @@
 import { useIsMobile } from "@/hooks/use-mobile";
 
-
-
 export function AmbientBackground() {
-  const isMobile = useIsMobile()
+  const isMobile = useIsMobile();
   return (
-    <div aria-hidden className={`pointer-events-none ${isMobile ? "absolute" : "fixed"} inset-0 -z-10 bg-background`}>
+    <div
+      aria-hidden
+      className={`pointer-events-none ${isMobile ? "absolute" : "fixed"} bg-background inset-0 -z-10`}
+    >
       <div className="lamp-layers">
-
-
         {/* Top-right lamp */}
         <div
           className={`absolute top-0 right-0 animate-[lamp-breathe_8s_ease-in-out_infinite_4s] ${isMobile ? "h-[55vh] w-[55vw]" : "h-[90vh] w-[90vw]"}`}

@@ -43,7 +43,7 @@ const RecommendationsCarousel = () => {
   const startTimer = () => {
     // Clear any existing timer first to avoid duplicates
     if (timerRef.current) clearInterval(timerRef.current);
-    
+
     timerRef.current = setInterval(() => {
       setActive((prev) => (prev + 1) % recommendations.length);
     }, 3500);
@@ -68,7 +68,7 @@ const RecommendationsCarousel = () => {
           io.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     io.observe(el);
     return () => io.disconnect();
@@ -80,29 +80,26 @@ const RecommendationsCarousel = () => {
     startTimer(); // 👈 This resets the 3.5-second countdown
   };
 
-
   const r = recommendations[active];
 
   return (
     <Reveal
       delay={isMobile ? 100 : 100}
       as="section"
-      className="p-4 py-8 sm:py-10 flex flex-col border-t dark:border dark:rounded-lg border-black dark:border-white/5 dark:bg-white/4"
+      className="flex flex-col border-t border-black p-4 py-8 sm:py-10 dark:rounded-lg dark:border dark:border-white/5 dark:bg-white/4"
     >
       <h2
-        className="text-xl sm:text-2xl font-bold tracking-tight mb-5 sm:mb-6"
+        className="mb-5 text-xl font-bold tracking-tight sm:mb-6 sm:text-2xl"
         style={{ fontFamily: "var(--font-anthropic-serif)" }}
       >
         Recommendations
       </h2>
 
       <div className="flex-1">
-        <figure
-          className="rounded-2xl bg-foreground/2 dark:bg-dark-surface border border-black/25 dark:border-white/5 p-4 sm:p-5 transition-all duration-300"
-        >
+        <figure className="bg-background dark:bg-dark-surface rounded-2xl border border-black/25 p-4 transition-all duration-300 sm:p-5 dark:border-white/5">
           <blockquote
             key={active}
-            className="text-xs sm:text-sm leading-relaxed text-foreground min-h-18 max-h-18 line-clamp-3 overflow-hidden text-ellipsis animate-fade-in italic"
+            className="text-foreground animate-fade-in line-clamp-3 max-h-18 min-h-18 overflow-hidden text-xs leading-relaxed text-ellipsis italic sm:text-sm"
             style={{
               fontFamily: "var(--font-anthropic-serif)",
               fontSize: "0.9rem",
@@ -113,13 +110,13 @@ const RecommendationsCarousel = () => {
           </blockquote>
           <figcaption className="mt-3 sm:mt-4">
             <p className="text-sm font-bold">{r.name}</p>
-            <p className="text-xs font-medium text-foreground/75">{r.title}</p>
+            <p className="text-foreground/75 text-xs font-medium">{r.title}</p>
           </figcaption>
         </figure>
       </div>
 
       {/* Bottom row: dots left, signature right — both baseline-aligned */}
-      <div className="flex items-center justify-between mt-4">
+      <div className="mt-4 flex items-center justify-between">
         {/* Dot indicators */}
         <div className="flex items-center gap-1.5">
           {recommendations.map((_, i) => (
@@ -129,8 +126,8 @@ const RecommendationsCarousel = () => {
               aria-label={`Go to recommendation ${i + 1}`}
               className={`rounded-full transition-all duration-300 ${
                 i === active
-                  ? "w-4 h-2 bg-foreground"
-                  : "w-2 h-2 bg-foreground/25 hover:bg-foreground/50"
+                  ? "bg-foreground h-2 w-4"
+                  : "bg-foreground/25 hover:bg-foreground/50 h-2 w-2"
               }`}
             />
           ))}
@@ -150,7 +147,11 @@ const RecommendationsCarousel = () => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className="block"
-            style={{ stroke: "currentColor", opacity: 1 , transition: "opacity 0.3s ease" }}
+            style={{
+              stroke: "currentColor",
+              opacity: 1,
+              transition: "opacity 0.3s ease",
+            }}
           >
             <path
               className="sig-path sig-path-1"

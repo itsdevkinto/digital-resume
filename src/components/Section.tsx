@@ -9,16 +9,15 @@ const Section = ({
   action?: React.ReactNode;
   children: React.ReactNode;
 }) => {
-
   return (
     <Reveal
       delay={100}
       as="section"
-      className="dark:bg-white/4 p-4 py-8 sm:py-10 border-t dark:border dark:rounded-lg border-black dark:border-white/5 mt-4"
+      className="mt-4 border-t border-black p-4 py-8 sm:py-10 dark:rounded-lg dark:border dark:border-white/5 dark:bg-white/4"
     >
-      <div className="flex items-center justify-between mb-5 sm:mb-6">
+      <div className="mb-5 flex items-center justify-between sm:mb-6">
         <h2
-          className="text-xl sm:text-2xl font-bold tracking-tight"
+          className="text-xl font-bold tracking-tight sm:text-2xl"
           style={{ fontFamily: "var(--font-anthropic-serif)" }}
         >
           {title}

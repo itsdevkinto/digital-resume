@@ -32,7 +32,7 @@ export const Reveal = ({
   blur = 8,
   once = true,
   style,
-  ariaHidden
+  ariaHidden,
 }: RevealProps) => {
   const ref = useRef<HTMLElement | null>(null);
   const [visible, setVisible] = useState(false);
@@ -43,7 +43,7 @@ export const Reveal = ({
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mq.matches) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
-    setReduced(true);
+      setReduced(true);
       setVisible(true);
       return;
     }
@@ -70,7 +70,12 @@ export const Reveal = ({
 
   if (reduced) {
     return (
-      <Tag ref={ref as never} className={className} style={style} aria-hidden={ariaHidden}>
+      <Tag
+        ref={ref as never}
+        className={className}
+        style={style}
+        aria-hidden={ariaHidden}
+      >
         {children}
       </Tag>
     );
@@ -81,7 +86,7 @@ export const Reveal = ({
       ref={ref as never}
       className={className}
       aria-hidden={ariaHidden}
-       /* 👈 FIXED: Added the prop here */
+      /* 👈 FIXED: Added the prop here */
       style={{
         ...style,
         opacity: visible ? 1 : 0,
