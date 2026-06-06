@@ -126,7 +126,7 @@ const TechStack = () => {
         </button>
       }
     >
-      <div className="grid grid-rows-3 md:grid-cols-2 gap-3 sm:gap-4">
+      <div className="grid grid-rows-3 gap-3 sm:gap-4 md:grid-cols-3 md:grid-rows-1">
         {(Object.keys(techStackDetails) as Category[]).map((cat, i) => {
           const skills = techStackDetails[cat].skills;
           return (
