@@ -441,7 +441,7 @@ const ModalInner = ({
     )}
 
     {!isMobile && (
-      <div className="flex w-48 shrink-0 flex-col gap-0.5 border-r border-black/10 px-3 py-5 dark:border-white/5 dark:bg-white/4">
+      <div className="flex w-48 shrink-0 flex-col gap-1 border-r border-black/10 px-3 pb-10 pt-5 dark:border-white/5 dark:bg-white/4">
         <div className="flex items-center gap-2 px-3 pb-4">
           <HeaderIcon className="h-4 w-4" />
           <span className="text-[11px] font-semibold tracking-wider uppercase">
@@ -456,13 +456,13 @@ const ModalInner = ({
               key={cat}
               onClick={() => onSwitch(cat)}
               className={cn(
-                "flex h-9 w-full shrink-0 items-center gap-2.5 rounded-lg px-3 text-left text-[13px] transition-all",
+                "flex h-10 w-full shrink-0 items-center gap-2.5 rounded-lg px-3 text-left text-sm transition-all",
                 isActive
                   ? "border-foreground/30 text-foreground border font-medium"
                   : "text-foreground/55 hover:text-foreground border border-transparent",
               )}
             >
-              <Icon className="h-4 w-4 shrink-0" />
+              <Icon className="h-5 w-5 shrink-0" />
               <span className="leading-none">{cat}</span>
               {isActive && (
                 <span className="bg-foreground/50 ml-auto h-1.5 w-1.5 shrink-0 rounded-full" />
