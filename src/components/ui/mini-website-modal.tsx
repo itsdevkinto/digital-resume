@@ -443,8 +443,8 @@ const ModalInner = ({
     {!isMobile && (
       <div className="flex w-48 shrink-0 flex-col gap-1 border-r border-black/10 px-3 pb-10 pt-5 dark:border-white/5 dark:bg-white/4">
         <div className="flex items-center gap-2 px-3 pb-4">
-          <HeaderIcon className="h-4 w-4" />
-          <span className="text-[11px] font-semibold tracking-wider uppercase">
+          <HeaderIcon className="h-5 w-5" />
+          <span className="text-xs font-semibold tracking-wider uppercase">
             {headerLabel}
           </span>
         </div>
